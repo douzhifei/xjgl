@@ -9,9 +9,22 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const axios = require('axios')
+const express = require('express')
+const bodyParser = require('body-parser')
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const app = express()
+const apiRoutes = express.Router()
+app.use('/api',apiRoutes)
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+
+
+const Article = require('../models/article')
+const World = require('../models/world')
+const Treasure = require('../models/treasure')
+
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -27,6 +40,118 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       rewrites: [
         { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
       ],
+    },
+    before(app){
+      app.use(bodyParser.urlencoded({    
+        extended: true
+      }));
+      app.use(bodyParser.json())
+      app.get("/api/getActivity",function(req,res){
+        var url = 'https://andfcg.qq.com/fcg-bin/mobile/android/base_common_interface_v2'
+         axios.get(url, {
+           headers: {
+             referer: 'https://agame.qq.com',
+             host: 'agame.qq.com'
+           },
+           params: req.query
+         }).then(response => {
+           console.log(response)
+           res.json(response.data)
+         }).catch(error => {
+           console.log(error)
+         })
+       }),
+       app.post("/createArticle",function(req, res){
+        Article.create(req.body).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+         })
+       }),
+       app.get("/getBanner",function(req, res){
+        Article.getBanner(parseInt(req.query.num)).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.post("/getList",function(req, res){
+        Article.getList(req.body).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.get("/deleteArticle",function(req, res){
+        Article.deleteOneArticle(req.query.id).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.get("/getArticle",function(req, res){
+        Article.getArticleById(req.query.id).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       //探宝
+       app.post("/createTreasure",function(req, res){
+        Treasure.create(req.body).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+         })
+       }),
+       app.get("/getTreasureAllList",function(req, res){
+        Treasure.getAllList().then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.get("/getTreasureList",function(req, res){
+        Treasure.getList(req.query).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.get("/getTreasureSearchList",function(req, res){
+        Treasure.getNameLike(req.query.name).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.post("/updateTreasure",function(req, res){
+        Treasure.update(req.body).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.get("/delTreasure",function(req, res){
+        Treasure.del(req.query.id).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.post("/createWorld",function(req, res){
+        World.create(req.body).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+         })
+       }),
+       app.get("/getWorld",function(req, res){
+        World.getList().then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.post("/updateWorld",function(req, res){
+        World.update(req.body).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       }),
+       app.get("/delWorld",function(req, res){
+        World.del(req.query.id).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       })
     },
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
