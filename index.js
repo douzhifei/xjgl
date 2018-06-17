@@ -6,7 +6,7 @@ var Article = require('./models/article')
 var World = require('./models/world')
 var Treasure = require('./models/treasure')
 
-var port = process.env.PORT || 5050
+var port = process.env.PORT || config.build.port
 
 var app = express()
 
