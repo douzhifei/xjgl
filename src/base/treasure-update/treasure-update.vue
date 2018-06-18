@@ -102,7 +102,7 @@ export default {
             let site = this.site.direction+'-'+this.site.row+'-'+this.site.col
             this.data.range = this.changSite(site,this.directions)
             this.data.site = site
-            if(!(this.data.name !==''&&Number.isInteger(this.data.num)&&Number.isInteger(this.data.level)&&Number.isInteger(this.data.level)&&Number.isInteger(this.data.important)&&this.site.direction !== undefined&&this.site.row !== undefined&&this.site.col !== undefined)){
+            if(!(this.data.name !==''&&Number.isInteger(this.data.num)&&Number.isInteger(this.data.important)&&this.site.direction !== undefined&&this.site.row !== undefined&&this.site.col !== undefined)){
                 this.$message('不能有空值！')
                 return
             }
