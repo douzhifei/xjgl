@@ -110,10 +110,6 @@ app.post("/createTreasure",function(req, res){
 
 app.use(express.static('./dist'))
 
-app.get('/', function(request, response) {
-  response.render('index');  //对应views文件夹下的 pages/index.ejs
-})
-
 module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err)
