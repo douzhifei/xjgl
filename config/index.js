@@ -6,15 +6,14 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
-    // Paths
+    env: require('./prod.env'),
+    port: 5050,
+    index: path.resolve(__dirname, '../dist/index.html'),
+    assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {},
+    assetsPublicPath: '',
+    productionSourceMap: true,
 
-    // Various Dev Server settings
-    host: '0.0.0.0', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
