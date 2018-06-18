@@ -108,10 +108,8 @@ app.post("/createTreasure",function(req, res){
   })
  })
 
-app.use(express.static('./dist'))
-app.get('/', function (req, res) {
-  res.send('Hello World');
-})
+app.use(express.static('./page'))
+
 
 module.exports = app.listen(port, function (err) {
   if (err) {
