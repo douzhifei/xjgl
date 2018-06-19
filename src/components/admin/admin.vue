@@ -1,8 +1,7 @@
 <template>
     <div class="admin">
         <ul class="menu">
-            <li class="item"><router-link to="/admin/treasure">文章</router-link></li>
-            <li class="item"><router-link to="/admin/treasure/1">虚空探宝</router-link></li>
+            <li class="item"><router-link to="/admin/treasure">虚空探宝</router-link></li>
         </ul>
         <router-view></router-view>
     </div>
