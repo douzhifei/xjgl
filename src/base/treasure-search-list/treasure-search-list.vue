@@ -5,7 +5,7 @@
         <div>
         <ul class="search-ul">
             <li class="search-li" v-for="(item, index) in data " :key="index">
-                <div class="search-li-data" style="width:95px;margin-left:4px">{{item.name+item.num}}</div>
+                <div class="search-li-data" style="width:95px;margin-left:4px">{{item.name+(item.num>1?item.num:'')}}</div>
                 <div class="search-li-data" style="width:85px">{{item.world}}</div>
                 <div class="search-li-data" style="width:70px">{{item.site}}</div>
                 <div class="search-li-data">{{item.level>0?item.level+"星":""}}</div>
