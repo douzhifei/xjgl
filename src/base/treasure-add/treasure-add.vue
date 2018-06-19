@@ -43,7 +43,7 @@
                     </el-select>
                 </div>
                 
-                <div class="add-item">难度：<el-input class="add-item-input" type="number" placeholder=" 几星难度" v-model="data.level"></el-input></div>
+                <div class="add-item">难度：<el-input class="add-item-input" type="number" placeholder=" 几星难度,可不填" v-model="data.level"></el-input></div>
                 <div class="add-item">加成：<el-input class="add-item-input" type="text" placeholder=" 加成，可不填" v-model="data.plus"></el-input></div>
                 <div class="add-item">
 
@@ -107,8 +107,11 @@ export default {
                 that.$emit('sucess', item)
                 that.$message('添加成功！')
                 console.log(11)
-                that.data = {}
-                that.site = {}
+                that.data.name =''
+                that.data.num = ''
+                that.data.level = ''
+                that.data.plus = ''
+                // that.site = {}
             }).catch((err) => {
                 console.log(err)
                 that.$message('添加失败！')
