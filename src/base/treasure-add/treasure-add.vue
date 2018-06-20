@@ -111,7 +111,12 @@ export default {
                 that.data.num = ''
                 that.data.level = ''
                 that.data.plus = ''
-                // that.site = {}
+                that.site.col++
+                if(that.site.col>5){
+                    that.site.col = 1
+                    that.site.row++
+                }
+                that.site.row>6?1:that.site.row
             }).catch((err) => {
                 console.log(err)
                 that.$message('添加失败！')
