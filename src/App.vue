@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="app-container"  @touchmove.prevent>
+    <div class="app-container"  @touchmove.prevent v-show="false">
       <search></search>
       <tab></tab>
     </div>
