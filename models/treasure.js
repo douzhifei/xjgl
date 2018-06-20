@@ -13,7 +13,7 @@ module.exports = {
 
   // 获取所有列表
   getAllList: function getAllList () {
-    return Treasure.find().sort({session: 1})
+    return Treasure.find().sort({_id: -1})
   },
   // 获取mapId列表
   getList: function getList (data) {
