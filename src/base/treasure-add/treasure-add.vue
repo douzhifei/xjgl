@@ -116,7 +116,9 @@ export default {
                     that.site.col = 1
                     that.site.row++
                 }
-                that.site.row>6?1:that.site.row
+                if(that.site.row>6){
+                    that.site.row = 1
+                }
             }).catch((err) => {
                 console.log(err)
                 that.$message('添加失败！')
