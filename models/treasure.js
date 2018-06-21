@@ -22,7 +22,39 @@ module.exports = {
 
   // 模糊查询，按name
   getNameLike: function getNameLike (str) {
-    return Treasure.find({name: {$regex: str, $options: '$i'}}).sort({num: -1})
+    if (str.indexOf('，') !== -1) {
+      let items = str.split('，')
+      let newStr = items.join('|')
+      return Treasure.find({name: {$regex: newStr, $options: '$i'}}).sort({name: 1})
+    }
+    switch (str) {
+      case '元宝' :
+        return Treasure.find({name: {$regex: str, $options: '$i'}}).sort({num: -1})
+        break
+      case '五彩石' :
+        return Treasure.find({name: {$regex: str, $options: '$i'}}).sort({num: -1})
+        break
+      case '琼华一梦' :
+        return Treasure.find({name: {$regex: /琼华菱纱|琼华天河|琼华梦璃|紫英仙人|飞仙玄霄/, $options: '$i'}}).sort({ name: 1 })
+        break
+      case '此生不换' :
+        return Treasure.find({name: {$regex: /公主龙葵|梦蛇紫萱|太子龙阳|魔尊重楼|掌门长卿/, $options: '$i'}}).sort({name: 1})
+        break
+      case '仙剑奇侠' :
+        return Treasure.find({name: {$regex: /海棠夫人|掌门逍遥|梦蛇灵儿|柔情月如/, $options: '$i'}}).sort({name: -1})
+        break
+      case 'f4' :
+        return Treasure.find({name: {$regex: /海棠夫人|掌门逍遥|梦蛇灵儿|柔情月如/, $options: '$i'}}).sort({name: -1})
+        break
+      case 'F4' :
+        return Treasure.find({name: {$regex: /海棠夫人|掌门逍遥|梦蛇灵儿|柔情月如/, $options: '$i'}}).sort({name: -1})
+        break
+      case '风不止' :
+        return Treasure.find({name: {$regex: /南蛮王|李三思|葛巧菱|灵月宫主/, $options: '$i'}}).sort({name: 1})
+        break
+      default:
+        return Treasure.find({name: {$regex: str, $options: '$i'}}).sort({mapId: 1})
+    }
   },
 
   // 通过 id 更新
