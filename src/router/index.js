@@ -14,6 +14,12 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+const Index = (resolve) => {
+  import('components/index/index').then((module) => {
+    resolve(module)
+  })
+}
+
 const Headline = (resolve) => {
   import('components/headline/headline').then((module) => {
     resolve(module)
@@ -80,32 +86,52 @@ const TreasureTable = (resolve) => {
   })
 }
 
+const AdminArticle = (resolve) => {
+  import('components/admin-article/admin-article').then((module) => {
+    resolve(module)
+  })
+}
+
+const AdminLogin = (resolve) => {
+  import('components/admin-login/admin-login').then((module) => {
+    resolve(module)
+  })
+}
+
+const AdminCount = (resolve) => {
+  import('components/admin-count/admin-count').then((module) => {
+    resolve(module)
+  })
+}
 
 export default new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',
-      redirect: '/treasure'
-    },
-    {
-      path: '/headline',
-      component: Headline
-    },
-    {
-      path: '/activity',
-      component: Activity
-    },
-    {
-      path: '/raiders',
-      component: Raiders
-    },
-    {
-      path: '/data',
-      component: Data
-    },
-    {
-      path: '/search',
-      component: Search
+      component: Index,
+      children: [
+        {
+          path: '/hot',
+          component: Headline
+        },
+        {
+          path: '/activity',
+          component: Activity
+        },
+        {
+          path: '/raiders',
+          component: Raiders
+        },
+        {
+          path: '/data',
+          component: Data
+        },
+        {
+          path: '/search',
+          component: Search
+        }
+      ]
     },
     {
       path: '/collect',
@@ -122,6 +148,14 @@ export default new Router({
         {
           path: '/admin/treasure',
           component: AdminTreasure
+        },
+        {
+          path: '/admin/article',
+          component: AdminArticle
+        },
+        {
+          path: '/admin/count',
+          component: AdminCount
         }
       ] 
     },
@@ -134,6 +168,10 @@ export default new Router({
           component: TreasureTable
         }
       ] 
+    },
+    {
+      path: '/login',
+      component: AdminLogin
     }
   ]
 })

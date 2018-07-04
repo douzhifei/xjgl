@@ -14,6 +14,7 @@
 import { getTreasureList } from 'api/treasure'
 import Scroll from 'base/scroll/scroll'
 import TreasurePart from 'base/treasure-part/treasure-part'
+import { countVisit } from 'api/others'
 export default {
     data(){
         return {
@@ -24,6 +25,9 @@ export default {
     },
     created(){
         this.newData()
+    },
+    mounted(){
+        countVisit('treasureTable')
     },
     methods: {
         newData(){

@@ -14,11 +14,30 @@ export function getBanner (n) {
     })
 }
 
-export function createArticle (ariticle) {
-  console.log(ariticle)
-  const url = '/createArticle'
+export function getAllArticleList (data) {
+  const url = '/api/getAllArticleList'
   return axios
-    .post(url, ariticle)
+    .get(url, {params: data})
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function deleteArticle (data) {
+  const url = '/api/deleteArticle'
+  return axios
+    .get(url, {
+      params: data
+    })
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function createArticle (data) {
+  const url = '/api/createArticle'
+  return axios
+    .post(url, data)
     .then(res => {
       return Promise.resolve(res.data)
     })
@@ -42,6 +61,38 @@ export function getArticle (id) {
     .get(url, {
       params: data
     })
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function getArticleSearch (str) {
+  const url = '/getArticleSearch'
+  const data = {
+    title: str
+  }
+  return axios
+    .get(url, {
+      params: data
+    })
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function getHots () {
+  const url = '/getHots'
+  return axios
+    .get(url)
+    .then(res => {
+      return Promise.resolve(res.data)
+    })
+}
+
+export function updateArticle (data) {
+  const url = '/api/updateArticle'
+  return axios
+    .post(url, data)
     .then(res => {
       return Promise.resolve(res.data)
     })

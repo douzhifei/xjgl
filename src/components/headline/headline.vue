@@ -1,12 +1,27 @@
 <template>
     <div class="headline">
-        <scroll :listenScroll="listenScroll" :beforeScroll="isBeforeScroll" :pullup="pullup"  @scrollToEnd="scrollToEnd" @beforeScroll="beforeScrollLoading"  class="headline-content" ref="headlineScroll">
+        <scroll :listenScroll="listenScroll" 
+                :beforeScroll="isBeforeScroll" 
+                :pullup="pullup"  
+                @scrollToEnd="scrollToEnd" 
+                @beforeScroll="beforeScrollLoading"  class="headline-content" ref="headlineScroll">
             <div>
-                <banner></banner>
-                <listview :listType ="listType" :hideLoading="hideLoading" :skip="skip" @select="slectItem" @nodata="setNodata" @finishLoad="finishLoad" :isloading="isloading"></listview>
-                <div class="blank"></div>
+                <banner @select="slectItem" ></banner>
+                <listview v-if="listData.length != 0" 
+                    :listType ="listType" 
+                    :hideLoading="hideLoading" 
+                    :skip="skip"
+                    :limit="limit" 
+                    @select="slectItem" 
+                    @nodata="setNodata" 
+                    @finishLoad="finishLoad" 
+                    :isloading="isloading" 
+                    :initData="listData"></listview>
             </div>
         </scroll>
+        <div class="loading-container" v-show="!listData.length">
+            <loading></loading>
+        </div>
     </div>
 </template>
 
@@ -14,34 +29,38 @@
 import Listview from 'base/listview/listview'
 import Banner from 'components/banner/banner'
 import Scroll from 'base/scroll/scroll'
+import Loading from 'base/loading/loading'
+import moment from 'moment'
+import { getBanner,getArticleList } from 'api/article'
+import {articleMixin} from 'common/js/mixin'
 const ARTICLE_TYPE = 0
 const ARTICLE_SKIP = 0
 export default {
+    mixins:[articleMixin],
     data() {
         return {
             skip: ARTICLE_SKIP,
             listType: ARTICLE_TYPE,
+            limit: 10,
             nodata: false,
             isFinish: true,
             isloading: false,
-            hideLoading: 0
+            hideLoading: 0,
+            listViewShow: false,
+            listData: []
         }
     },
     created() {
         this.listenScroll = false
         this.pullup = true
         this.isBeforeScroll = true
+        this._initData()
     },
     methods: {
-        slectItem(item) {
-            this.$router.push({
-                path: `/article/${item._id}`
-            })
-        },
         scrollToEnd() {
             if(!this.nodata && this.isFinish){
                 this.isFinish = false
-                this.skip += 3
+                this.skip += 10
                 return
             }
             this.hideLoading += 1 
@@ -54,13 +73,41 @@ export default {
             this.refresh()
         },
         beforeScrollLoading() {
+            if(this.listData.length<this.limit){
+                return
+            }
             this.isloading = !this.isloading
         },
         refresh() {
             this.$refs.headlineScroll.refresh()
-        }
+        },
+        _initData() {
+            let dataList = {
+                type: this.listType,
+                limit: this.limit,
+                skip: this.skip
+            }
+            getArticleList(dataList).then((res) => {
+                let list = []
+                res.forEach(value => {
+                    let item = {}
+                    item._id = value._id
+                    item.cover = value.cover
+                    item.title = value.title
+                    item.type = value.type
+                    item.goto = value.goto
+                    item.create_time = moment(value.create_time).format('YYYY-MM-DD')
+                    list.push(item)
+                })
+                this.listData = list
+                setTimeout(()=>{
+                    this.refresh()
+                },40)
+            })
+        },
+        
     },
-    components: { Listview, Banner, Scroll }
+    components: { Listview, Banner, Scroll, Loading }
 }
 </script>
 
@@ -76,6 +123,12 @@ export default {
         .blank
             width: 100%
             height: 25px 
+    .loading-container
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translateY(-50%)
+        transform: translateX(-50%)
 </style>
 
 

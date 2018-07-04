@@ -71,6 +71,7 @@
 
 <script>
 import { createTreasure } from 'api/treasure'
+import {mapGetters} from 'vuex'
 export default {
     data() {
         return {
@@ -87,6 +88,9 @@ export default {
             default: []
         }
     },
+    computed: {
+        ...mapGetters(['token'])
+    },
     methods: {
         addSubmit(){
             this.data.num = parseInt(this.data.num)
@@ -102,6 +106,7 @@ export default {
                 return
             }
             let that = this
+            this.data.token = this.token
             createTreasure(this.data).then((result) => {
                 let item = result
                 that.$emit('sucess', item)

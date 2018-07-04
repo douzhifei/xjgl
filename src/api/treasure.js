@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export function createTreasure (data) {
-  const url = '/createTreasure'
+  const url = '/api/createTreasure'
   return axios
     .post(url, data)
     .then(res => {
@@ -9,10 +9,10 @@ export function createTreasure (data) {
     })
 }
 
-export function getTreasureAllList () {
-  const url = '/getTreasureAllList'
+export function getTreasureAllList (data) {
+  const url = '/api/getTreasureAllList'
   return axios
-    .get(url)
+    .get(url, {params: data})
     .then(res => {
       return Promise.resolve(res.data)
     })
@@ -60,11 +60,8 @@ export function getTreasure (id) {
     })
 }
 
-export function delTreasure (id) {
-  const url = '/delTreasure'
-  const data = {
-    id: id
-  }
+export function delTreasure (data) {
+  const url = '/api/delTreasure'
   return axios
     .get(url, {
       params: data
@@ -75,7 +72,7 @@ export function delTreasure (id) {
 }
 
 export function updateTreasure (data) {
-  const url = '/updateTreasure'
+  const url = '/api/updateTreasure'
   return axios
     .post(url, data)
     .then(res => {

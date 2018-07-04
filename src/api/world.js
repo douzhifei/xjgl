@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export function createWorld (data) {
-  const url = '/createWorld'
+  const url = '/api/createWorld'
   return axios
     .post(url, data)
     .then(res => {
@@ -19,7 +19,7 @@ export function getWorld () {
 }
 
 export function delWorld (id) {
-  const url = '/delWorld'
+  const url = '/api/delWorld'
   const data = {
     id: id
   }
@@ -33,7 +33,7 @@ export function delWorld (id) {
 }
 
 export function updateWorld (data) {
-  const url = '/updateWorld'
+  const url = '/api/updateWorld'
   return axios
     .post(url, data)
     .then(res => {

@@ -1,6 +1,6 @@
 <template>
     <div class="treasure">
-        <div class="treasure-head">虚空探宝</div>
+        <head-box class="head-box" :data="articleData" :inApp="this.isApp(this.$route.query.inApp)"></head-box>
         <search-box class="search-box"
             @showSearch="showSearch"
             @closeSearch="closeSearch"
@@ -24,17 +24,30 @@ import TreasureSearchList from 'base/treasure-search-list/treasure-search-list'
 import Scroll from 'base/scroll/scroll'
 import { getWorld } from 'api/world'
 import { getTreasureSearchList } from 'api/treasure'
-
+import { countVisit } from 'api/others'
+import {articleMixin} from 'common/js/mixin'
+import HeadBox from 'base/head-box/head-box'
 export default {
+    mixins: [articleMixin],
     data(){
         return {
             data:[],
             showSearchList: false,
-            searchData:[]
+            searchData:[],
+            articleData:{},
         }
     },
     created(){
         this._getWorld()
+        this.articleData.title = '虚空探宝'
+        if(this.$route.query.inApp){
+            this.getArticleData().then((res)=>{
+                this.articleData = res
+            })
+        }
+    },
+    mounted(){
+        countVisit('treasure')
     },
     methods: {
         _getWorld() {
@@ -80,7 +93,7 @@ export default {
 
         }
     },
-    components: { SearchBox,TreasureSearchList,Scroll }
+    components: { SearchBox,TreasureSearchList,Scroll,HeadBox }
     
 }
 </script>
@@ -97,15 +110,9 @@ export default {
     z-index 999
     font-size $font-size-large
     overflow hidden
-    .treasure-head
+    .head-box
         width 100%
-        height 50px
-        display flex
-        align-items center
-        justify-content center
-        font-size $font-size-medium-x
         border-bottom 2px solid #E7E6EB
-        font-weight bold
     .treasure-scroll
         position absolute
         width 100%

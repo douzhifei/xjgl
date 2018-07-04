@@ -1,6 +1,6 @@
 <template>
   <div class="tab">
-    <router-link tag="div" class="tab-item" to="/headline">
+    <router-link tag="div" class="tab-item" to="/hot">
       <span class="tab-link">头条</span>
     </router-link>
     <router-link tag="div" class="tab-item" to="/activity">

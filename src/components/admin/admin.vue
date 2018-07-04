@@ -1,18 +1,29 @@
 <template>
     <div class="admin">
         <ul class="menu">
+            <li class="item"><router-link to="/admin/article">文章</router-link></li>
             <li class="item"><router-link to="/admin/treasure">虚空探宝</router-link></li>
+            <li class="item"><router-link to="/admin/count">页面统计</router-link></li>
         </ul>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
+import {adminMixin} from 'common/js/mixin'
+import axios from 'axios'
 export default {
-
+    mixins:[adminMixin],
+    mounted(){
+        this.checkToken()
+    },
+    watch: {
+        '$route' (to, from) {
+            this.checkToken()
+        }
+    },
 }
 </script>
-
 <style lang="stylus" scoped>
 @import "~common/stylus/variable"
 .admin

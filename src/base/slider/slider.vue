@@ -57,7 +57,7 @@
     mounted() {
       setTimeout(() => {
         this.update()
-      }, 300);
+      }, 200);
 
       window.addEventListener('resize', () => {
         if (!this.slide || !this.slide.enabled) {
@@ -225,7 +225,7 @@
         a
           display: block
           width: 350px
-          height: 187.5px
+          height: 196px
           margin-left: 12.5px
           overflow: hidden
           text-decoration: none
@@ -237,7 +237,7 @@
       position: absolute
       right: 0
       left: 0
-      bottom: 20px
+      bottom: 12px
       transform: translateZ(1px)
       text-align: center
       font-size: 0

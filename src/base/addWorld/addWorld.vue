@@ -15,16 +15,21 @@
 
 <script>
 import { createWorld } from 'api/world'
+import {mapGetters} from 'vuex'
 export default {
     data() {
         return {
             data: {},
         }
     },
+    computed: {
+        ...mapGetters(['token'])
+    },
     methods: {
         addSubmit(){
             this.data.mapId = parseInt(this.data.mapId)
             let that = this
+            this.data.token = this.token
             createWorld(this.data).then((result) => {
                 that.$message('添加成功！')
                 that.data = {}

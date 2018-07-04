@@ -8,20 +8,24 @@ module.exports = {
 
   // 获取banner的文章
   getBanner: function getBanner (num) {
-    return Article.find({banner: true}, {title: 1, cover: 1}).sort({create_time: -1}).limit(num)
+    return Article.find({banner: 1}, {title: 1, cover: 1, type: 1, goto: 1}).sort({create_time: -1}).limit(num)
   },
 
-  //获取文字列表
+  // 获取所以文章
+  getAllList: function getAllList () {
+    return Article.find().sort({_id: -1})
+  },
+  // 获取文字列表
   getList: function getList (list) {
     if (list.type === 0 ) {
-      return Article.find({}, {title: 1, cover: 1}).sort({create_time: -1}).limit(list.limit).skip(list.skip)
+      return Article.find({}, {title: 1, cover: 1, type: 1, goto: 1}).sort({create_time: -1, top: -1}).limit(list.limit).skip(list.skip)
     }
-    return Article.find({type: list.type}, {title: 1, cover: 1}).sort({create_time: -1}).limit(list.limit).skip(list.skip)
+    return Article.find({type: list.type}, {title: 1, cover: 1, type: 1, goto: 1}).sort({create_time: -1, top: -1}).limit(list.limit).skip(list.skip)
   },
 
   // 通过文章 id 获取一篇文章
   getArticleById: function getArticleById (articleId) {
-    return Article.findOne({ _id: articleId })
+    return Article.findByIdAndUpdate({ _id: articleId }, {$inc: { likes: 1 }})
   },
 
   // 通过文章 id 删除一篇文章
@@ -29,28 +33,14 @@ module.exports = {
     return Article.deleteOne({ _id: articleId })
   },
 
-  // 按创建时间降序获取所有用户文章或者某个特定用户的所有文章
-  getPosts: function getArticles (author) {
-    const query = {}
-    if (author) {
-      query.author = author
-    }
-    return Article.find(query)
-      .sort({ _id: -1 })
+  // 按创建时间降序模糊搜索所有文章
+  getArticles: function getArticles (str) {
+    return Article.find({title: {$regex: str, $options: '$i'}}).sort({ _id: -1 })
   },
 
-  // 按创建时间降序获取所有用户文章或者某个特定用户的所有文章
-  getArticles: function getArticles (author) {
-    const query = {}
-    if (author) {
-      query.author = author
-    }
-    return Article.find(query)
-      .sort({ _id: -1 })
-  },
-
-  // 通过文章 id 更新一篇文章
-  updateArticleById: function updateArticleById (articleId, data) {
-    return Article.update({ _id: articleId }, { $set: data })
+  // 通过 id 更新
+  update: function update (data) {
+    data.update_time = new Date()
+    return Article.update({ _id: data._id }, { $set: data })
   }
 }

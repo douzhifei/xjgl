@@ -2,10 +2,10 @@
     <div class="listview">
         <ul class="list-group" ref="listGroup">
             <li class="list-item" v-for="(item, index) in data" :key="index" @click="selectItem(item)">
-                <img :src="item.cover" >
+                <img v-lazy="item.cover == undefined ? pic : item.cover" >
                 <div class="item-right">
                     <div class="item-title">{{item.title}}</div>
-                    <div class="item-time">{{item.create_time}}</div>
+                    <div class="item-time"><i class="fa fa-clock-o" aria-hidden="true" style="padding-right:2px"></i>{{item.create_time}}</div>
                 </div>
             </li>
         </ul>
@@ -19,9 +19,10 @@
 </template>
 
 <script>
-import { getArticleList } from 'api/bbs'
+import { getArticleList } from 'api/article'
 import moment from 'moment'
 import Loading from 'base/loading/loading'
+import defaultPic from 'common/image/default.jpg'
 export default {
     data() {
         return {
@@ -29,7 +30,8 @@ export default {
             loadEnd: false,
             loadMore: true,
             isLoad: true,
-            refreshTxt: '没有更多数据了'
+            refreshTxt: '没有更多数据了',
+            pic: defaultPic
         }
     },
     props: {
@@ -39,7 +41,7 @@ export default {
         },
         limit: {
             type: Number,
-            default: 5,
+            default: 10,
         },
         skip: {
             type: Number,
@@ -56,36 +58,22 @@ export default {
         hideLoading: {
             type: Number,
             default: 0
+        },
+        initData: {
+            type: Array,
+            default: []
         }
     },
     created() {
-        this._initData()
+        this.data = this.initData
     },
     methods: {
-        _initData() {
-            let dataList = {
-                type: this.listType,
-                limit: this.limit,
-                skip: this.skip
-            }
-            getArticleList(dataList).then((res) => {
-                res.forEach(value => {
-                    let item = {}
-                    item._id = value._id
-                    item.cover = value.cover
-                    item.title = value.title
-                    item.create_time = moment(value.create_time).format('YYYY-MM-DD')
-                    this.data.push(item)
-                })
-
-            })
-        },
         getMoreData() {
-            this.loadEnd = true
             if(!this.isLoad){
                 this.loadEnd = false
                 return
             }
+            this.isLoad = false
             let moreData = {
                 type: this.listType,
                 limit: this.limit,
@@ -93,11 +81,10 @@ export default {
             }
             let that = this
             getArticleList(moreData).then((res) => {
+                that.isLoad = true
                 if(res.length == 0){
-                    console.log(res)
                     that.loadEnd = true
                     that.loadMore = false
-                    that.isLoad = false
                     this.$emit('nodata')
                     return
                 }
@@ -107,6 +94,8 @@ export default {
                     item._id = value._id
                     item.cover = value.cover
                     item.title = value.title
+                    item.goto = value.goto
+                    item.type = value.type
                     item.create_time = moment(value.create_time).format('YYYY-MM-DD')
                     newLists.push(item)
                 })
@@ -158,7 +147,7 @@ export default {
         .list-item
             position: relative
             width: 350px
-            height: 95px
+            height: 90px
             margin-top: 10px
             margin-left: 12.5px
             display: flex
@@ -169,17 +158,17 @@ export default {
                 display: flex
                 left: 0
                 height: 100%
-                width: 150px
+                width: 160px
                 border-radius: 10px
             .item-right
                 padding: 10px
                 display: flex 
-                width: 360px
+                width: 170px
                 flex-direction: column
                 justify-content:space-between
                 .item-title
                     overflow: hidden
-                    height: 39px
+                    height: 41px
                     width: 100%
                     font-size: $font-size-large
                     line-height: 21px

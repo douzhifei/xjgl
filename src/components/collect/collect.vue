@@ -5,14 +5,30 @@
                 <i class="back" @click="$router.back(-1)"></i>
                 <span class="title">我的收藏</span>
             </div>
-            <div class="collect-list"></div>
+            <collect-list :data="favoriteList" @select="slectItem" @delCollect="delCollect"></collect-list>
         </div>
     </transition>
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
+import CollectList from 'base/collect-list/collect-list'
+import {articleMixin} from 'common/js/mixin'
+import { countVisit } from 'api/others'
 export default {
-    
+    mixins:[articleMixin],
+    computed: {
+         ...mapGetters(['favoriteList'])
+    },
+    mounted(){
+        countVisit('collect')
+    },
+    methods:{
+        delCollect(item){
+            this.toggleFavorite(item)
+        }
+    },
+    components:{CollectList}
 }
 </script>
 
@@ -25,7 +41,7 @@ export default {
   top 0
   bottom 0
   background-color $color-background-search
-  z-index 999
+  z-index 9999
   .collect-head
     display flex
     position relative
@@ -43,7 +59,8 @@ export default {
       background-size 24px 24px
       bg-image('left')
 .slide-enter-active, .slide-leave-active
-    transition: all 0.3s
+    transition: all 0.4s
+    opacity: 1
 .slide-enter, .slide-leave-to
-    transform: translate3d(100%, 0, 0)
+    opacity: 0
 </style>

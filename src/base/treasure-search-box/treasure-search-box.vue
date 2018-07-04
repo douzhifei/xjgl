@@ -44,9 +44,6 @@ export default {
             this.noclick = false
             this.collect = false
             this.showQuit = true
-            // this.$router.push({
-            //     path: 'treasureSearch'
-            // })
             this.$emit('showSearch')
         },
         displaySearch() {

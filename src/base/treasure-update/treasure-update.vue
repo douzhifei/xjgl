@@ -70,6 +70,7 @@
 
 <script>
 import { updateTreasure } from 'api/treasure'
+import {mapGetters} from 'vuex'
 export default {
     data() {
         return {
@@ -93,6 +94,9 @@ export default {
             default: []
         }
     },
+    computed: {
+        ...mapGetters(['token'])
+    },
     methods: {
         updateSubmit(){
             this.data.num = parseInt(this.data.num)
@@ -108,6 +112,7 @@ export default {
             }
             delete this.data.nameNum
             let that = this
+            that.data.token = this.token
             updateTreasure(that.data).then((res) => {
                 if(!res.ok){
                     that.$message('修改失败！')

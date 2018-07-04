@@ -49,8 +49,9 @@ import TreasureUpdate from 'base/treasure-update/treasure-update'
 import AddWorld from 'base/addWorld/addWorld'
 import { getWorld } from 'api/world'
 import { getTreasureAllList, delTreasure } from 'api/treasure'
-
+import {adminMixin} from 'common/js/mixin'
 export default {
+    mixins:[adminMixin],
     data() {
         return {
             data:[],
@@ -100,6 +101,9 @@ export default {
         this._getTreasureAllList()
         this._getWorld()
     },
+    mounted(){
+        this.checkToken()
+    },
     methods: {
         _getWorld() {
             getWorld().then((res)=>{
@@ -108,7 +112,8 @@ export default {
         },
         _getTreasureAllList() {
             let that = this
-            getTreasureAllList().then( (res) =>{
+            let token = {token: this.token}
+            getTreasureAllList(token).then( (res) =>{
                 res.forEach(element => {
                     let nameNum = element.name + element.num
                     let item = { nameNum: nameNum }
@@ -138,7 +143,8 @@ export default {
             this.isOpenAdd = false
         },
         delete(row) {
-            delTreasure(row._id).then( (res) =>{
+            let data = {id:_id, token: this.token}
+            delTreasure(data).then( (res) =>{
                 if(!res.ok){
                     return
                 }
@@ -160,7 +166,6 @@ export default {
             Object.assign(item,val)
             this.isOpenUpdate = false
             this.data.splice(this.uRow, 1, item)
-            console.log(this.data[this.uRow])
         },
         width(key) {
             if(key !== 'nameNum'){
