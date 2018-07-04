@@ -5,9 +5,9 @@
         <div>
         <ul class="search-ul">
             <li class="search-li" v-for="(item, index) in data " :key="index">
-                <div class="search-li-data" style="width:95px;margin-left:4px">{{item.name+(item.num>1?item.num:'')}}</div>
-                <div class="search-li-data" style="width:85px">{{item.world}}</div>
-                <div class="search-li-data" style="width:70px">{{item.site}}</div>
+                <div class="search-li-name" style="margin-left:4px">{{item.name+(item.num>1?item.num:'')}}</div>
+                <div class="search-li-world" >{{item.world}}</div>
+                <div class="search-li-site">{{item.site}}</div>
                 <div class="search-li-data">{{item.level>0?item.level+"星":""}}</div>
                 <div class="search-li-data" style="margin-left:5px">{{item.plus}}</div>
             </li>
@@ -58,7 +58,12 @@ export default {
             color #7e8c8d
             padding 10px 0
             border-bottom 1px solid rgba(126,140,141,0.6)
-            
+            .search-li-name
+                width 25%
+            .search-li-world
+                width 23%
+            .search-li-site
+                width 19%
 .slide-enter-active, .slide-leave-active
     transition: all 0.3s
 .slide-enter, .slide-leave-to

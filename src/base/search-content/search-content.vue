@@ -71,8 +71,8 @@ export default {
     width 100%
     .hot
       position relative
-      width 350px
-      padding 20px 0 0 12.5px
+      width 94%
+      padding 20px 0 0 3%
       .hot-title
         position relative
         width 100%
@@ -94,8 +94,8 @@ export default {
       padding-top 40px
       .history-title
         position relative
-        width 350px
-        margin-left 12.5px
+        width 94%
+        margin-left 3%
         .history-clear
           position absolute
           right 0
@@ -103,7 +103,7 @@ export default {
       .history-list
         padding-top 15px
         .history-item
-          width 375px
+          width 100%
           height 40px
           background-color $color-background-search 
           display flex
@@ -112,7 +112,7 @@ export default {
             display flex
             align-items center
             justify-content center
-            width 50px
+            width 17%
             height 100%
             border-bottom  1px solid #E7E6EB
             .icon-close
@@ -121,9 +121,9 @@ export default {
               background-size 16px 16px
               bg-image('close')
           .history-item-left
-            width 300px
+            width 80%
             height 100%
-            margin-left 13px
+            margin-left 3%
             no-wrap()
             border-bottom  1px solid #E7E6EB
             line-height 40px

@@ -1,11 +1,12 @@
 <template>
     <transition  name="slide">
-        <scroll class="treasure">
+        <scroll class="treasure" ref="scroll">
             <div>
                 <div class="treasure-head">{{$route.query.title}}</div>
                 <div class="treasure-map">
                     <treasure-part :data="item" v-for="(item, index) in tData" :key="index"></treasure-part>
-                </div>
+                </div> 
+                <adv v-if="tData.length!=0" @scrollTop="scrollTop"></adv>
             </div>
         </scroll>
     </transition>
@@ -15,6 +16,7 @@ import { getTreasureList } from 'api/treasure'
 import Scroll from 'base/scroll/scroll'
 import TreasurePart from 'base/treasure-part/treasure-part'
 import { countVisit } from 'api/others'
+import Adv from 'base/adv/adv'
 export default {
     data(){
         return {
@@ -47,9 +49,11 @@ export default {
                 }
             })
         },
-        
+        scrollTop(){
+            this.$refs.scroll.scrollTo(0, 0, 400)
+        }
     },
-    components: {TreasurePart, Scroll}
+    components: {TreasurePart, Scroll, Adv}
     
 }
 </script>

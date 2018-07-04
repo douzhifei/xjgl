@@ -115,7 +115,7 @@ export default {
         display: flex
         align-items: center
         box-sizing: border-box
-        width: 300px
+        width: 80%
         padding: 0 12.5px
         height: 35px
         background: $color-background-tab
@@ -127,7 +127,7 @@ export default {
             height: 16px
             background-size: 16px 16px
             bg-image('search')
-            left: 136px
+            left: 36.3%
         .icon-search2
             position relative
             width: 16px

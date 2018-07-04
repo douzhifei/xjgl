@@ -146,10 +146,10 @@ export default {
         width: 100%
         .list-item
             position: relative
-            width: 350px
+            width: 94%
             height: 90px
             margin-top: 10px
-            margin-left: 12.5px
+            margin-left: 3%
             display: flex
             border: 1px #f6f6f6 solid
             border-radius: 10px
@@ -163,7 +163,7 @@ export default {
             .item-right
                 padding: 10px
                 display: flex 
-                width: 170px
+                flex 1
                 flex-direction: column
                 justify-content:space-between
                 .item-title

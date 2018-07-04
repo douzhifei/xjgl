@@ -51,11 +51,11 @@ export default {
     .history
       .history-title
         position relative
-        width 350px
-        margin-left 12.5px
+        width 94%
+        margin-left 3%
       .history-list
         .history-item
-          width 375px
+          width 100%
           height 40px
           background-color $color-background-search
           display flex
@@ -73,9 +73,9 @@ export default {
               background-size 16px 16px
               bg-image('close')
           .history-item-left
-            width 300px
+            width 94%
             height 100%
-            margin-left 13px
+            margin-left 3%
             no-wrap()
             border-bottom  1px solid #E7E6EB
             line-height 40px

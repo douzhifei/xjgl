@@ -224,9 +224,9 @@
         text-align: center
         a
           display: block
-          width: 350px
-          height: 196px
-          margin-left: 12.5px
+          width: 94%
+          // padding-bottom 56%
+          margin-left: 3%
           overflow: hidden
           text-decoration: none
           border-radius: 10px

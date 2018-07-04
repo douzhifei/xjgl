@@ -40,10 +40,10 @@ export default {
             font-size $font-size-large
             top 0
             .head-center
-                width 285px
+                width 76%
                 height 45px
                 position absolute
-                left 45px
+                left 12%
                 line-height 45px
                 text-align center
                 no-wrap()

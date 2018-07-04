@@ -41,6 +41,7 @@ export default {
     line-height: 22px
     font-size: $font-size-large
     margin-top: 10px
+    width 100%
     z-index: 0
     .tab-item
       display: flex
