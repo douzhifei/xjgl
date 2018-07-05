@@ -21,7 +21,7 @@
 - 访问不快^_^;
 
 ### 主页和简单的管理后台图片
-![主页](http://pb2s3qp87.bkt.clouddn.com/xjgl153078165664170.png)
+![主页](http://pb2s3qp87.bkt.clouddn.com/%E6%9C%AA%E6%A0%87%E9%A2%98-1.jpg)
 ## Build Setup
 
 ``` bash
