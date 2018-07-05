@@ -11,17 +11,17 @@
 
 
                             <div class="container">
-                                <div class="title">{{data.title}}</div>
-                                <div class="comments">
+                                <div class="title" v-show="data.title">{{data.title}}</div>
+                                <div class="comments" v-show="data.comments">
                                     <span>{{data.author}}</span>
                                     <span>{{data.create_time}}</span>
                                 </div>
-                                <div class="content" ref="content"></div>
+                                <div class="content" ref="content" v-show="data.content"></div>
                                 <adv v-if="data.title" @scrollTop="scrollTop"></adv>
                             </div>
       
             </scroll>
-            <div class="loading-container" v-show="!data.title">
+            <div class="loading-container" v-if="!data.title">
                 <loading></loading>
             </div>
         </div>
@@ -66,12 +66,13 @@ export default {
             this.$refs.scroll.refresh()
         },
         refresh(){
+            this.data = {}
             this.getArticleData().then((res)=>{
             this.data = res
             this.$refs.content.innerHTML = this.data.content
             setTimeout(()=>{
                 this.refreshScroll()
-                },100)
+                },200)
             })
         }
     },
