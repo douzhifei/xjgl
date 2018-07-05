@@ -8,17 +8,17 @@
 + 后台也很简单，只是方便自己在手机上发布文章，添加游戏数据
 
 ### 相关技术
->基于vue-cli手脚架开发
->前端vue/vuex/vue-router/axios/rem移动适应
->后台nodejs
->数据库mongodb 
->数据请求使用JWT权限校验
++基于vue-cli手脚架开发
++前端vue/vuex/vue-router/axios/rem移动适应
++后台nodejs
++数据库mongodb 
++数据请求使用JWT权限校验
 
 ### 部署
->服务器Heroku
->数据库MongoDB提供的免费空间
->图床千牛
->访问不快^_^;
+-服务器Heroku
+-数据库MongoDB提供的免费空间
+-图床千牛
+访问不快^_^;
 
 ## Build Setup
 
