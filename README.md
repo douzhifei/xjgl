@@ -18,8 +18,10 @@
 - 服务器Heroku
 - 数据库MongoDB提供的免费空间
 - 图床千牛
-访问不快^_^;
+- 访问不快^_^;
 
+### 主页和简单的管理后台图片
+![主页](http://pb2s3qp87.bkt.clouddn.com/xjgl153078165664170.png)
 ## Build Setup
 
 ``` bash
