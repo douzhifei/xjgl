@@ -1,6 +1,7 @@
 # xjgl
 
 > A Vue.js project
+> 玩了多年的手机卡牌游戏仙剑奇侠传手游，做了一个[攻略网站](http://xjgl.fun)
 
 ## Build Setup
 
