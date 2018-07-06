@@ -15,6 +15,7 @@
             <el-input-number class="item-num2" v-model="num2" :min="0" :max="2" label="遭遇次数"></el-input-number>
         </div>
         <div class="result">{{ animatedNumber }}</div>
+        <adv class="adv" v-if="articleData.title"></adv>
     </div>
 </template>
 <script>
@@ -22,6 +23,7 @@ import {TweenLite} from 'gsap/TweenLite'
 import HeadBox from 'base/head-box/head-box'
 import {articleMixin} from 'common/js/mixin'
 import { countVisit } from 'api/others'
+import Adv from 'base/adv/adv'
 export default {
      mixins: [articleMixin],
      data() {
@@ -76,7 +78,7 @@ export default {
           return 3900 + ((x+20)*130*3+(150-x*3)*120+y*10)*z
       }
     },
-    components:{HeadBox},
+    components:{HeadBox,Adv},
     watch: {
         num1: function(newValue) {
             TweenLite.to(this.$data, 1, { result: this.computeResult(newValue, this.num2, this.value) })
@@ -92,7 +94,12 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .data-lt
+    position fixed
     width 100%
+    left 0
+    top 0
+    bottom 0
+    z-index 9999
     .compute,.name
         width 96%
         margin-left 2%
@@ -117,4 +124,7 @@ export default {
         text-align center
         margin-top 10%
         font-weight bold
+    .adv
+        position absolute
+        bottom 0
 </style>
