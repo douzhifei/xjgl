@@ -99,7 +99,7 @@ export default {
     left 0
     top 0
     bottom 0
-    z-index 9999
+    z-index 999
     .compute,.name
         width 96%
         margin-left 2%
