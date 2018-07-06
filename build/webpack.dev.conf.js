@@ -15,7 +15,7 @@ const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const app = express()
 const apiRoutes = express.Router()
-const tokenQiniu = require('../config/qiniu')
+const tokenQiniu = require('../config/default').uploadToken
 const jwt = require('jsonwebtoken')
 const morgan = require('morgan')
 const Article = require('../models/article')
@@ -229,7 +229,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
        // 获取qiniu token
        app.get("/getToken",function(req, res){
           res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
-          res.end(tokenQiniu.uploadToken())
+          res.end(tokenQiniu)
        })
        // 统计页面访问次数
        app.get("/count",function(req, res){
