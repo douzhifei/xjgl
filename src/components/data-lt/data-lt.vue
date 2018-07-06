@@ -21,6 +21,7 @@
 import {TweenLite} from 'gsap/TweenLite'
 import HeadBox from 'base/head-box/head-box'
 import {articleMixin} from 'common/js/mixin'
+import { countVisit } from 'api/others'
 export default {
      mixins: [articleMixin],
      data() {
@@ -51,7 +52,7 @@ export default {
         }],
         value: 8,
         result: 216780,
-        articleData:{title:'龙潭满气分数计算器'}
+        articleData:{}
       };
     },
     computed: {
@@ -60,7 +61,15 @@ export default {
         }
     },
     created(){
-        
+        this.articleData.title = '龙潭满气分数计算器'
+        if(this.$route.query.inApp){
+            this.getArticleData().then((res)=>{
+                this.articleData = res
+            })
+        }
+    },
+    mounted(){
+        countVisit('longtan')
     },
     methods: {
       computeResult(x,y,z) {
