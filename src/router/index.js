@@ -104,6 +104,13 @@ const AdminCount = (resolve) => {
   })
 }
 
+const DataLt = (resolve) => {
+  import('components/data-lt/data-lt').then((module) => {
+    resolve(module)
+  })
+}
+
+
 export default new Router({
   // mode: 'history',
   routes: [
@@ -172,6 +179,10 @@ export default new Router({
     {
       path: '/login',
       component: AdminLogin
+    },
+    {
+      path: '/lt',
+      component: DataLt
     }
   ]
 })

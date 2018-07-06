@@ -12,7 +12,7 @@
 
                             <div class="container">
                                 <div class="title" v-show="data.title">{{data.title}}</div>
-                                <div class="comments" v-show="data.comments">
+                                <div class="comments" v-show="data.create_time">
                                     <span>{{data.author}}</span>
                                     <span>{{data.create_time}}</span>
                                 </div>
