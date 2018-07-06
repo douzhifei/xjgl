@@ -43,6 +43,15 @@ export default {
     computed:{
         ...mapGetters(['searchHistory'])
     },
+    watch: {
+        '$route' (to, from) {
+            if(to.path == '/') {
+                this.$router.push({
+                    path: 'hot'
+                })
+            }
+        }
+    },
     created(){
         this._getHots()
     },

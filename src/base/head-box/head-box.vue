@@ -2,7 +2,7 @@
     <div class="head">
         <div class="head-left"><i class="back" @click="goBack()"></i></div>
         <div class="head-center" v-if="showTitle">{{data.title}}</div>
-        <div class="head-right" @click="toggleFavorite(data)" v-if="inApp">
+        <div class="head-right" @click="toggleFavorite(data)" v-if="inApp&&data.title">
             <i :class="getFavoriteIcon(data)" ></i>
          </div>
     </div>

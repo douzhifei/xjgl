@@ -40,6 +40,7 @@ export default {
     created(){
         this._getWorld()
         this.articleData.title = '虚空探宝'
+        this.articleData.goto = 'treasure'
         if(this.$route.query.inApp){
             this.getArticleData().then((res)=>{
                 this.articleData = res

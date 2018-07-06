@@ -28,7 +28,7 @@ export default {
      mixins: [articleMixin],
      data() {
       return {
-        num1: 27,
+        num1: 40,
         num2: 0,
         options: [{
           value: 8,
@@ -64,6 +64,7 @@ export default {
     },
     created(){
         this.articleData.title = '龙潭满气分数计算器'
+        this.articleData.goto = 'lt'
         if(this.$route.query.inApp){
             this.getArticleData().then((res)=>{
                 this.articleData = res
@@ -93,13 +94,16 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+@import "~common/stylus/variable"
 .data-lt
     position fixed
     width 100%
     left 0
     top 0
     bottom 0
+    overflow scroll
     z-index 999
+    background: $color-background
     .compute,.name
         width 96%
         margin-left 2%
@@ -125,6 +129,5 @@ export default {
         margin-top 10%
         font-weight bold
     .adv
-        position absolute
-        bottom 0
+        margin-top 90px
 </style>

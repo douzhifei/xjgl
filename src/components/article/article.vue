@@ -52,13 +52,6 @@ export default {
         countVisit('article')
     },
     methods: {
-        scroll(el) {
-            if(el.y>-50) {
-                this.showHead = true
-            }else{
-                this.showHead = false
-            }
-        },
         scrollTop(){
             this.$refs.scroll.scrollTo(0, 0, 300)
         },
@@ -72,7 +65,7 @@ export default {
             this.$refs.content.innerHTML = this.data.content
             setTimeout(()=>{
                 this.refreshScroll()
-                },200)
+                },300)
             })
         }
     },
