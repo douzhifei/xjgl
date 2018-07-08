@@ -34,25 +34,25 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import "~common/stylus/variable"
-  .tab
-    display: flex
-    height: 44px
-    line-height: 22px
-    font-size: $font-size-large
-    margin-top: 10px
-    width 100%
-    z-index: 0
-    .tab-item
-      display: flex
-      flex: 1
-      justify-content: center
-      align-items: center
+@import '~common/stylus/variable'
+.tab
+  display flex
+  height 44px
+  line-height 22px
+  font-size $font-size-large
+  margin-top 10px
+  width 100%
+  z-index 0
+  .tab-item
+    display flex
+    flex 1
+    justify-content center
+    align-items center
+    .tab-link
+      padding-bottom 2px
+      color $color-text-l
+    &.router-link-active
       .tab-link
-        padding-bottom: 2px
-        color: $color-text-l
-      &.router-link-active
-        .tab-link
-          color: $color-theme
-          border-bottom: 2px solid $color-theme
+        color $color-theme
+        border-bottom 2px solid $color-theme
 </style>

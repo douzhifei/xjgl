@@ -201,7 +201,7 @@ apiRoutes.post("/createArticle",function(req, res){
  // 获取qiniu token
  app.get("/getToken",function(req, res){
     res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
-    res.end(tokenQiniu.uploadToken())
+    res.end(tokenQiniu)
  })
  // 统计页面访问次数
  app.get("/count",function(req, res){

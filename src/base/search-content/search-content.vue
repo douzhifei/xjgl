@@ -1,23 +1,30 @@
 <template>
-  <transition  name="slide">
+  <transition name="slide">
     <div class="search-content">
       <scroll class="search-scroll" ref="scroll">
         <div>
-            <div class="hot">
-              <div class="hot-title"><strong>热门搜索</strong></div>
-              <ul class="hot-list">
-                <li v-for="(item,index) in hots" :key="index" class="hot-item"  @click="selectItem(item.name)">{{item.name}}</li>
-              </ul>
+          <div class="hot">
+            <div class="hot-title">
+              <strong>热门搜索</strong>
             </div>
-            <div class="history" v-if="data.length!=0">
-              <div class="history-title"><strong>历史搜索</strong><strong class="history-clear" @click="historyClear">清空</strong></div>
-              <ul class="history-list">
-                <li v-for="(item,index) in data" :key="index" class="history-item" @click="selectItem(item)">
-                  <div class="history-item-left">{{item}}</div>
-                  <div class="history-item-right" @click.stop="delSearch(item)"><i class="icon-close"></i></div>
-                </li>
-              </ul>
+            <ul class="hot-list">
+              <li v-for="(item,index) in hots" :key="index" class="hot-item" @click="selectItem(item.name)">{{item.name}}</li>
+            </ul>
+          </div>
+          <div class="history" v-if="data.length!=0">
+            <div class="history-title">
+              <strong>历史搜索</strong>
+              <strong class="history-clear" @click="historyClear">清空</strong>
             </div>
+            <ul class="history-list">
+              <li v-for="(item,index) in data" :key="index" class="history-item" @click="selectItem(item)">
+                <div class="history-item-left">{{item}}</div>
+                <div class="history-item-right" @click.stop="delSearch(item)">
+                  <i class="icon-close"></i>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </scroll>
     </div>
@@ -26,44 +33,44 @@
 <script>
 import Scroll from 'base/scroll/scroll'
 export default {
-    props:{
-      data:{
-        type:Array,
-        default:[]
-      },
-      hots:{
-        type:Array,
-        default:[]
-      }
+  props: {
+    data: {
+      type: Array,
+      default: () => { return [] }
     },
-    methods: {
-      selectItem(item){
-        this.$emit('selectKey',item)
-      },
-      historyClear(){
-        this.$emit('historyClear')
-      },
-      refreshScroll(){
-        this.$refs.scroll.refresh()
-      },
-      delSearch(item){
-          this.$emit('delSearch',item)
-        }
-    },
-    components:{ Scroll },
-    watch:{
-      'data':'refreshScroll'
+    hots: {
+      type: Array,
+      default: () => { return [] }
     }
+  },
+  methods: {
+    selectItem (item) {
+      this.$emit('selectKey', item)
+    },
+    historyClear () {
+      this.$emit('historyClear')
+    },
+    refreshScroll () {
+      this.$refs.scroll.refresh()
+    },
+    delSearch (item) {
+      this.$emit('delSearch', item)
+    }
+  },
+  components: { Scroll },
+  watch: {
+    'data': 'refreshScroll'
+  }
 }
 </script>
 <style lang="stylus" scoped>
-@import "~common/stylus/variable"
-@import "~common/stylus/mixin"
+@import '~common/stylus/variable'
+@import '~common/stylus/mixin'
 .search-content
   width 100%
   top 100px
   bottom 0
-  background-color $color-background-search 
+  background-color $color-background-search
   font-size $font-size-large
   overflow hidden
   .search-scroll
@@ -88,7 +95,7 @@ export default {
           color #7e8c8d
           background-color $color-background-tab
           padding 5px
-          margin:7.5px 7.5px 0px 0
+          margin 7.5px 7.5px 0px 0
           border-radius 3px
     .history
       padding-top 40px
@@ -105,7 +112,7 @@ export default {
         .history-item
           width 100%
           height 40px
-          background-color $color-background-search 
+          background-color $color-background-search
           display flex
           color #7e8c8d
           .history-item-right
@@ -114,7 +121,7 @@ export default {
             justify-content center
             width 17%
             height 100%
-            border-bottom  1px solid #E7E6EB
+            border-bottom 1px solid #E7E6EB
             .icon-close
               width 16px
               height 16px
@@ -125,13 +132,13 @@ export default {
             height 100%
             margin-left 3%
             no-wrap()
-            border-bottom  1px solid #E7E6EB
+            border-bottom 1px solid #E7E6EB
             line-height 40px
           &:first-child
-            .history-item-left,.history-item-right
-              border-top  1px solid #E7E6EB
+            .history-item-left, .history-item-right
+              border-top 1px solid #E7E6EB
 .slide-enter-active, .slide-leave-active
-    transition: all 0.3s
+  transition all 0.3s
 .slide-enter, .slide-leave-to
-    transform: translate3d(0, 100%, 0)
+  transform translate3d(0, 100%, 0)
 </style>

@@ -9,7 +9,7 @@ export function countVisit (name) {
 
 export function countList (data) {
   const url = '/api/countList'
-  return axios.get(url, {params: data}).then(res => {
+  return axios.get(url, { params: data }).then(res => {
     return Promise.resolve(res.data)
   })
 }

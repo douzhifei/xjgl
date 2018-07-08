@@ -1,20 +1,20 @@
 <template>
-<div class="banner">
-  <div class="banner-container">
-  <slider :speed="speed">
-    <div v-for="(item, index) in banners" :key="index"  @click="selectItem(item)">
-      <a>
-        <img :src="item.cover == undefined ? pic : item.cover ">
-      </a>
+  <div class="banner">
+    <div class="banner-container">
+      <slider :speed="speed">
+        <div v-for="(item, index) in banners" :key="index" @click="selectItem(item)">
+          <a>
+            <img :src="item.cover == undefined ? pic : item.cover ">
+          </a>
+        </div>
+      </slider>
     </div>
-  </slider>
   </div>
-</div>
 </template>
 
 <script>
 import Slider from 'base/slider/slider'
-import { getBanner, createArticle } from 'api/article'
+import { getBanner } from 'api/article'
 import defaultPic from 'common/image/default.jpg'
 export default {
   name: 'banner',
@@ -35,7 +35,7 @@ export default {
         this.speed = 450
       })
     },
-    selectItem(item) {
+    selectItem (item) {
       this.$emit('select', item)
     }
   },
@@ -45,17 +45,16 @@ export default {
 
 <style lang="stylus" scoped rel="stylesheet/stylus">
 .banner
-  position: relative
-  width: 100%
-  margin-top: 12.5px
-  height: 0
-  padding-top: 53%
-  overflow: hidden
+  position relative
+  width 100%
+  margin-top 12.5px
+  height 0
+  padding-top 53%
+  overflow hidden
   .banner-container
-    position: absolute
-    width: 100%
-    height: 100%
-    top: 0
-    left: 0
+    position absolute
+    width 100%
+    height 100%
+    top 0
+    left 0
 </style>
-

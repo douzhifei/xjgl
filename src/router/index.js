@@ -14,103 +14,107 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const Index = (resolve) => {
-  import('components/index/index').then((module) => {
+const Index = resolve => {
+  import('components/index/index').then(module => {
     resolve(module)
   })
 }
 
-const Headline = (resolve) => {
-  import('components/headline/headline').then((module) => {
+const Headline = resolve => {
+  import('components/headline/headline').then(module => {
     resolve(module)
   })
 }
 
-const Activity = (resolve) => {
-  import('components/activity/activity').then((module) => {
+const Activity = resolve => {
+  import('components/activity/activity').then(module => {
     resolve(module)
   })
 }
 
-const Raiders = (resolve) => {
-  import('components/raiders/raiders').then((module) => {
+const Raiders = resolve => {
+  import('components/raiders/raiders').then(module => {
     resolve(module)
   })
 }
 
-const Data = (resolve) => {
-  import('components/data/data').then((module) => {
+const Data = resolve => {
+  import('components/data/data').then(module => {
     resolve(module)
   })
 }
 
-const Article = (resolve) => {
-  import('components/article/article').then((module) => {
+const Article = resolve => {
+  import('components/article/article').then(module => {
     resolve(module)
   })
 }
 
-const Search = (resolve) => {
-  import('base/search-content/search-content').then((module) => {
+const Search = resolve => {
+  import('base/search-content/search-content').then(module => {
     resolve(module)
   })
 }
 
-const Collect = (resolve) => {
-  import('components/collect/collect').then((module) => {
+const Collect = resolve => {
+  import('components/collect/collect').then(module => {
     resolve(module)
   })
 }
 
-const Admin = (resolve) => {
-  import('components/admin/admin').then((module) => {
+const Admin = resolve => {
+  import('components/admin/admin').then(module => {
     resolve(module)
   })
 }
 
-const AdminTreasure = (resolve) => {
-  import('components/admin-treasure/admin-treasure').then((module) => {
+const AdminTreasure = resolve => {
+  import('components/admin-treasure/admin-treasure').then(module => {
     resolve(module)
   })
 }
 
-const Treasure = (resolve) => {
-  import('components/treasure/treasure').then((module) => {
+const Treasure = resolve => {
+  import('components/treasure/treasure').then(module => {
     resolve(module)
   })
 }
 
-const TreasureTable = (resolve) => {
-  import('components/treasure-table/treasure-table').then((module) => {
+const TreasureTable = resolve => {
+  import('components/treasure-table/treasure-table').then(module => {
     resolve(module)
   })
 }
 
-const AdminArticle = (resolve) => {
-  import('components/admin-article/admin-article').then((module) => {
+const AdminArticle = resolve => {
+  import('components/admin-article/admin-article').then(module => {
     resolve(module)
   })
 }
 
-const AdminLogin = (resolve) => {
-  import('components/admin-login/admin-login').then((module) => {
+const AdminLogin = resolve => {
+  import('components/admin-login/admin-login').then(module => {
     resolve(module)
   })
 }
 
-const AdminCount = (resolve) => {
-  import('components/admin-count/admin-count').then((module) => {
+const AdminCount = resolve => {
+  import('components/admin-count/admin-count').then(module => {
     resolve(module)
   })
 }
 
-const DataLt = (resolve) => {
-  import('components/data-lt/data-lt').then((module) => {
+const DataLt = resolve => {
+  import('components/data-lt/data-lt').then(module => {
     resolve(module)
   })
 }
 
-
+const DataFs = resolve => {
+  import('components/data-fs/data-fs').then(module => {
+    resolve(module)
+  })
+}
 export default new Router({
   // mode: 'history',
   routes: [
@@ -164,7 +168,7 @@ export default new Router({
           path: '/admin/count',
           component: AdminCount
         }
-      ] 
+      ]
     },
     {
       path: '/treasure',
@@ -174,7 +178,7 @@ export default new Router({
           path: '/treasure/:id',
           component: TreasureTable
         }
-      ] 
+      ]
     },
     {
       path: '/login',
@@ -183,6 +187,10 @@ export default new Router({
     {
       path: '/lt',
       component: DataLt
+    },
+    {
+      path: '/fs',
+      component: DataFs
     }
   ]
 })

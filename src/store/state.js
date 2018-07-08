@@ -1,4 +1,4 @@
-import {loadSearch, loadFavorite, loadToken} from 'common/js/cache'
+import { loadSearch, loadFavorite, loadToken } from 'common/js/cache'
 
 const state = {
   searchHistory: loadSearch(),

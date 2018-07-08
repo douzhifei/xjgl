@@ -16,7 +16,7 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
 @import '~common/stylus/index'
-#app 
+#app
   max-width 1024px
   margin auto 0
   .app-container

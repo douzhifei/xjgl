@@ -20,7 +20,7 @@ Vue.use(DataTables)
 Vue.use(VueLazyload, {
   loading: require('common/image/default.jpg')
 })
-let template7 = "<div><div><el-upload class=\"a-input avatar-uploader\" :action= \"domain\" :http-request = \"upqiniu\" :show-file-list=\"false\" :before-upload=\"beforeUpload\"><el-button size=\"small\" type=\"primary\">点击上传</el-button></el-upload></div></div>"
+let template7 = '<div><div><el-upload class=\'a-input avatar-uploader\' :action= \'domain\' :http-request = \'upqiniu\' :show-file-list=\'false\' :before-upload=\'beforeUpload\'><el-button size=\'small\' type=\'primary\'>点击上传</el-button></el-upload></div></div>'
 Vue.use(VueHtml5Editor, {
   showModuleName: false,
   image: {
@@ -30,7 +30,7 @@ Vue.use(VueHtml5Editor, {
     height: 500,
     quality: 80
   },
-  modules:[
+  modules: [
     {
       name: 'qiniu',
       icon: 'fa fa-file-image-o',
@@ -87,7 +87,7 @@ Vue.use(VueHtml5Editor, {
             return isJPG && isLt5M
           }
         }
-      }  
+      }
     }
   ]
 })

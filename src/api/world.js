@@ -2,20 +2,16 @@ import axios from 'axios'
 
 export function createWorld (data) {
   const url = '/api/createWorld'
-  return axios
-    .post(url, data)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.post(url, data).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
 
 export function getWorld () {
   const url = '/getWorld'
-  return axios
-    .get(url)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.get(url).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
 
 export function delWorld (id) {
@@ -34,9 +30,7 @@ export function delWorld (id) {
 
 export function updateWorld (data) {
   const url = '/api/updateWorld'
-  return axios
-    .post(url, data)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.post(url, data).then(res => {
+    return Promise.resolve(res.data)
+  })
 }

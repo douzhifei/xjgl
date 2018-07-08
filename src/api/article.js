@@ -16,11 +16,9 @@ export function getBanner (n) {
 
 export function getAllArticleList (data) {
   const url = '/api/getAllArticleList'
-  return axios
-    .get(url, {params: data})
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.get(url, { params: data }).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
 
 export function deleteArticle (data) {
@@ -36,20 +34,16 @@ export function deleteArticle (data) {
 
 export function createArticle (data) {
   const url = '/api/createArticle'
-  return axios
-    .post(url, data)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.post(url, data).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
 
 export function getArticleList (obj) {
   const url = '/getList'
-  return axios
-    .post(url, obj)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.post(url, obj).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
 
 export function getArticle (id) {
@@ -82,18 +76,14 @@ export function getArticleSearch (str) {
 
 export function getHots () {
   const url = '/getHots'
-  return axios
-    .get(url)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.get(url).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
 
 export function updateArticle (data) {
   const url = '/api/updateArticle'
-  return axios
-    .post(url, data)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.post(url, data).then(res => {
+    return Promise.resolve(res.data)
+  })
 }

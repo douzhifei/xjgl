@@ -2,20 +2,16 @@ import axios from 'axios'
 
 export function createTreasure (data) {
   const url = '/api/createTreasure'
-  return axios
-    .post(url, data)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.post(url, data).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
 
 export function getTreasureAllList (data) {
   const url = '/api/getTreasureAllList'
-  return axios
-    .get(url, {params: data})
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.get(url, { params: data }).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
 
 export function getTreasureList (mapId) {
@@ -73,9 +69,7 @@ export function delTreasure (data) {
 
 export function updateTreasure (data) {
   const url = '/api/updateTreasure'
-  return axios
-    .post(url, data)
-    .then(res => {
-      return Promise.resolve(res.data)
-    })
+  return axios.post(url, data).then(res => {
+    return Promise.resolve(res.data)
+  })
 }
