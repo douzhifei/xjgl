@@ -45,7 +45,7 @@ export default {
     scrollToEnd () {
       if (!this.nodata && this.isFinish) {
         this.isFinish = false
-        this.skip += 3
+        this.skip += 10
         return
       }
       this.hideLoading += 1
