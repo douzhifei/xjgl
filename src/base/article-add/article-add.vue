@@ -13,7 +13,7 @@
         <el-input class="a-input" type="text" v-model="data.author" placeholder="作者"></el-input>
       </div>
       <div class="a-item a-cover">封面：
-        <el-upload class="a-input avatar-uploader" :action=d omain :http-request=u pqiniu :show-file-list="false" :before-upload="beforeUpload">
+        <el-upload class="a-input avatar-uploader" :action="domain" :http-request="upqiniu" :show-file-list="false" :before-upload="beforeUpload">
           <img v-if="imageUrl" :src="imageUrl" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>

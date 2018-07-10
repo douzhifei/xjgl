@@ -2,7 +2,7 @@
   <transition name="slide">
     <scroll class="treasure" ref="scroll">
       <div>
-        <div class="treasure-head">{{$route.query.title}}</div>
+        <head-box class="head-box" :data="articleData"></head-box>
         <div class="treasure-map">
           <treasure-part :data="item" v-for="(item, index) in tData" :key="index"></treasure-part>
         </div>
@@ -17,15 +17,18 @@ import Scroll from 'base/scroll/scroll'
 import TreasurePart from 'base/treasure-part/treasure-part'
 import { countVisit } from 'api/others'
 import Adv from 'base/adv/adv'
+import HeadBox from 'base/head-box/head-box'
 export default {
   data () {
     return {
       data: new Array(270),
       tData: [],
-      directions: ['东', '西', '南', '北', '中', '西南', '西北', '东北', '东南']
+      directions: ['东', '西', '南', '北', '中', '西南', '西北', '东北', '东南'],
+      articleData: {}
     }
   },
   created () {
+    this.articleData.title = this.$route.query.title
     this.newData()
   },
   mounted () {
@@ -53,7 +56,7 @@ export default {
       this.$refs.scroll.scrollTo(0, 0, 400)
     }
   },
-  components: { TreasurePart, Scroll, Adv }
+  components: { TreasurePart, Scroll, Adv, HeadBox }
 
 }
 </script>
@@ -70,13 +73,8 @@ export default {
   z-index 999
   font-size $font-size-large
   overflow hidden
-  .treasure-head
+  .head-box
     width 100%
-    height 50px
-    display flex
-    align-items center
-    justify-content center
-    font-size $font-size-medium-x
     border-bottom 2px solid #E7E6EB
     font-weight bold
   .treasure-map

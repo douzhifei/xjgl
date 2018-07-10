@@ -115,6 +115,13 @@ const DataFs = resolve => {
     resolve(module)
   })
 }
+
+const DataJj = resolve => {
+  import('components/data-jj/data-jj').then(module => {
+    resolve(module)
+  })
+}
+
 export default new Router({
   // mode: 'history',
   routes: [
@@ -155,6 +162,7 @@ export default new Router({
     {
       path: '/admin',
       component: Admin,
+      meta: { title: '后台管理' },
       children: [
         {
           path: '/admin/treasure',
@@ -173,24 +181,34 @@ export default new Router({
     {
       path: '/treasure',
       component: Treasure,
+      meta: { title: '虚空探宝' },
       children: [
         {
           path: '/treasure/:id',
-          component: TreasureTable
+          component: TreasureTable,
+          meta: { title: '虚空探宝' }
         }
       ]
     },
     {
       path: '/login',
-      component: AdminLogin
+      component: AdminLogin,
+      meta: { title: '登录' }
     },
     {
       path: '/lt',
-      component: DataLt
+      component: DataLt,
+      meta: { title: '龙潭积分计算器' }
     },
     {
       path: '/fs',
-      component: DataFs
+      component: DataFs,
+      meta: { title: '人物飞升所需材料计算器' }
+    },
+    {
+      path: '/jj',
+      component: DataJj,
+      meta: { title: '人物绝技所需材料计算器' }
     }
   ]
 })

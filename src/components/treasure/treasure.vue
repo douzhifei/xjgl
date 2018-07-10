@@ -1,17 +1,19 @@
 <template>
-  <div class="treasure">
-    <head-box class="head-box" :data="articleData" :inApp="this.isApp(this.$route.query.inApp)"></head-box>
-    <search-box class="search-box" @showSearch="showSearch" @closeSearch="closeSearch" @query="onQueryChange"></search-box>
-    <scroll class="treasure-scroll">
-      <div class="treasure-map">
-        <div class="map-item" v-for="(item, mapId) in data" :key="mapId">
-          <a @click="gotoTable(item)">{{item.name}}</a>
+  <transition name="slide">
+    <div class="treasure">
+      <head-box class="head-box" :data="articleData" :inApp="this.isApp(this.$route.query.inApp)"></head-box>
+      <search-box class="search-box" @showSearch="showSearch" @closeSearch="closeSearch" @query="onQueryChange"></search-box>
+      <scroll class="treasure-scroll">
+        <div class="treasure-map">
+          <div class="map-item" v-for="(item, mapId) in data" :key="mapId">
+            <a @click="gotoTable(item)">{{item.name}}</a>
+          </div>
         </div>
-      </div>
-    </scroll>
-    <treasure-search-list class="search-list treasure-scroll" v-show="showSearchList" :data="searchData"></treasure-search-list>
-    <router-view></router-view>
-  </div>
+      </scroll>
+      <treasure-search-list class="search-list treasure-scroll" v-show="showSearchList" :data="searchData"></treasure-search-list>
+      <router-view></router-view>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -103,7 +105,7 @@ export default {
   bottom 0
   left 0
   background-color $color-background
-  z-index 999
+  z-index 1000
   font-size $font-size-large
   overflow hidden
   .head-box
@@ -120,4 +122,8 @@ export default {
       text-align center
       .map-item
         padding 12px
+.slide-enter-active, .slide-leave-active
+  transition all 0.4s
+.slide-enter, .slide-leave-to
+  transform translate3d(100%, 0, 0)
 </style>

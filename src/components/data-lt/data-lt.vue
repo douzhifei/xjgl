@@ -1,22 +1,24 @@
 <template>
-  <div class="data-lt">
-    <head-box class="head-box" :data="articleData" :inApp="this.isApp(this.$route.query.inApp)"></head-box>
-    <div class="name">
-      <div class="item item-value">称号</div>
-      <div class="item item-num1">遭遇战次数</div>
-      <div class="item item-num2">遭遇战最后场数</div>
+  <transition name="slide">
+    <div class="data-lt">
+      <head-box class="head-box" :data="articleData" :inApp="this.isApp(this.$route.query.inApp)"></head-box>
+      <div class="name">
+        <div class="item item-value">称号</div>
+        <div class="item item-num1">遭遇战次数</div>
+        <div class="item item-num2">遭遇战最后场数</div>
+      </div>
+      <div class="compute">
+        <el-select class="item-value" v-model="value" placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input-number class="item-num1" v-model="num1" :min="27" :max="48" label="遭遇次数"></el-input-number>
+        <el-input-number class="item-num2" v-model="num2" :min="0" :max="2" label="遭遇次数"></el-input-number>
+      </div>
+      <div class="result">{{ animatedNumber }}</div>
+      <adv class="adv" v-if="articleData.title"></adv>
     </div>
-    <div class="compute">
-      <el-select class="item-value" v-model="value" placeholder="请选择">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-        </el-option>
-      </el-select>
-      <el-input-number class="item-num1" v-model="num1" :min="27" :max="48" label="遭遇次数"></el-input-number>
-      <el-input-number class="item-num2" v-model="num2" :min="0" :max="2" label="遭遇次数"></el-input-number>
-    </div>
-    <div class="result">{{ animatedNumber }}</div>
-    <adv class="adv" v-if="articleData.title"></adv>
-  </div>
+  </transition>
 </template>
 <script>
 import { TweenLite } from 'gsap/TweenLite'
@@ -102,7 +104,7 @@ export default {
   top 0
   bottom 0
   overflow scroll
-  z-index 999
+  z-index 1000
   background $color-background
   .compute, .name
     width 96%
@@ -130,4 +132,8 @@ export default {
     font-weight bold
   .adv
     margin-top 90px
+.slide-enter-active, .slide-leave-active
+  transition all 0.4s
+.slide-enter, .slide-leave-to
+  transform translate3d(100%, 0, 0)
 </style>
