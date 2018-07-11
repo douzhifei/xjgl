@@ -45,6 +45,12 @@
             </el-option>
           </el-select>
         </div>
+        <div class="item">
+          <el-switch
+            v-model="fbz"
+            active-text="风不止">
+          </el-switch>
+        </div>
       </div>
       <div class="result" v-if="animatedNumber1">
         <div class="re-left">自身元神：</div>
@@ -96,11 +102,7 @@ export default {
   mixins: [articleMixin],
   data () {
     return {
-      dis2: false,
-      dis3: true,
-      dis4: true,
-      dis5: true,
-      dis6: true,
+      fbz: false,
       options1: [{
         value: 0,
         label: '-'
@@ -352,6 +354,11 @@ export default {
       return this.result9.toFixed(0) > 0 ? this.result9.toFixed(0) + '万' : ''
     }
   },
+  watch: {
+    fbz: function () {
+      this.change()
+    }
+  },
   created () {
     this.articleData.title = '人物绝技所需材料'
     this.articleData.goto = 'jj'
@@ -426,9 +433,14 @@ export default {
       }
       for (let i = 0; i < this.value2; i++) {
         result.result1 += this.jj2[i].ys
-        result.result2 += this.jj2[i].xy1
         result.result3 += this.jj2[i].xy2
-        result.result4 += this.jj2[i].xy3
+        if (this.fbz) {
+          result.result4 += this.jj2[i].xy1
+          result.result2 += this.jj2[i].xy3
+        } else {
+          result.result2 += this.jj2[i].xy1
+          result.result4 += this.jj2[i].xy3
+        }
         result.result5 += this.jj2[i].st
         result.result6 += this.jj2[i].mj
         result.result7 += this.jj2[i].lz
