@@ -9,6 +9,9 @@ const mutations = {
   },
   [types.SET_TOKEN] (state, token) {
     state.token = token
+  },
+  [types.SET_SKIN_LIST] (state, list) {
+    state.skinList = list
   }
 }
 

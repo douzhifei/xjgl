@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import {saveSearch, clearSearch, deleteSearch, saveFavorite, deleteFavorite, setToken} from 'common/js/cache'
+import {saveSearch, clearSearch, deleteSearch, saveFavorite, deleteFavorite, setToken, saveSkin} from 'common/js/cache'
 
 export const saveSearchHistory = function ({commit}, query) {
   commit(types.SET_SEARCH_HISTORY, saveSearch(query))
@@ -18,4 +18,7 @@ export const deleteFavoriteList = function ({commit}, item) {
 }
 export const saveToken = function ({commit}, token) {
   commit(types.SET_TOKEN, setToken(token))
+}
+export const saveSkinList = function ({commit}, list) {
+  commit(types.SET_SKIN_LIST, saveSkin(list))
 }

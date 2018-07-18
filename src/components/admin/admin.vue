@@ -8,6 +8,9 @@
         <router-link to="/admin/treasure">虚空探宝</router-link>
       </li>
       <li class="item">
+        <router-link to="/admin/skin">云裳</router-link>
+      </li>
+      <li class="item">
         <router-link to="/admin/count">页面统计</router-link>
       </li>
     </ul>

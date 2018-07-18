@@ -1,9 +1,10 @@
-import { loadSearch, loadFavorite, loadToken } from 'common/js/cache'
+import { loadSearch, loadFavorite, loadToken, loadSkin } from 'common/js/cache'
 
 const state = {
   searchHistory: loadSearch(),
   favoriteList: loadFavorite(),
-  token: loadToken()
+  token: loadToken(),
+  skinList: loadSkin()
 }
 
 export default state

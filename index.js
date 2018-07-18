@@ -2,7 +2,7 @@ var express = require('express')
 var config = require('./config/index')
 var axios = require('axios')
 var bodyParser = require('body-parser')
-const tokenQiniu = require('./config/default').uploadToken
+const tokenQiniu = require('../config/qiniu').uploadToken()
 const jwt = require('jsonwebtoken')
 const morgan = require('morgan')
 const Article = require('./models/article')
@@ -11,6 +11,7 @@ const Treasure = require('./models/treasure')
 const Hot = require('./models/hot')
 const User = require('./models/user')
 const Count = require('./models/count')
+const Skin = require('../models/skin')
 
 var port = process.env.PORT || config.build.port
 
@@ -212,6 +213,19 @@ apiRoutes.post("/createArticle",function(req, res){
  })
  apiRoutes.get("/countList",function(req, res){
   Count.getList().then((data) => {
+    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+    res.end(JSON.stringify(data))
+  })
+ })
+ // 皮肤
+ apiRoutes.post("/skin",function(req, res){
+  Skin.create(req.body).then((data) => {
+    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+    res.end(JSON.stringify(data))
+  })
+ })
+ app.get("/skin",function(req, res){
+  Skin.getList().then((data) => {
     res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
     res.end(JSON.stringify(data))
   })

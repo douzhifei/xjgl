@@ -122,6 +122,18 @@ const DataJj = resolve => {
   })
 }
 
+const AdminSkin = resolve => {
+  import('components/admin-skin/admin-skin').then(module => {
+    resolve(module)
+  })
+}
+
+const DataSkin = resolve => {
+  import('components/data-skin/data-skin').then(module => {
+    resolve(module)
+  })
+}
+
 export default new Router({
   // mode: 'history',
   routes: [
@@ -175,6 +187,10 @@ export default new Router({
         {
           path: '/admin/count',
           component: AdminCount
+        },
+        {
+          path: '/admin/skin',
+          component: AdminSkin
         }
       ]
     },
@@ -209,6 +225,11 @@ export default new Router({
       path: '/jj',
       component: DataJj,
       meta: { title: '人物绝技所需材料计算器' }
+    },
+    {
+      path: '/skin',
+      component: DataSkin,
+      meta: { title: '云裳计算器' }
     }
   ]
 })

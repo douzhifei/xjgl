@@ -57,7 +57,7 @@ export default {
         this.$refs.content.innerHTML = this.data.content
         setTimeout(() => {
           this.refreshScroll()
-        }, 300)
+        }, 500)
       })
     }
   },

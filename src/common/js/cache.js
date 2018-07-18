@@ -8,6 +8,8 @@ const FAVORITE_MAX_LEN = 200
 
 const TOKEN = '__token__'
 
+const SKIN_KEY = '_skin_'
+
 function insertArray (arr, val, compare, maxLen) {
   const index = arr.findIndex(compare)
   if (index === 0) {
@@ -93,4 +95,13 @@ export function loadToken () {
 
 export function setToken (token) {
   return storage.set(TOKEN, token)
+}
+
+export function saveSkin (skins) {
+  storage.set(SKIN_KEY, skins)
+  return skins
+}
+
+export function loadSkin () {
+  return storage.get(SKIN_KEY)
 }
