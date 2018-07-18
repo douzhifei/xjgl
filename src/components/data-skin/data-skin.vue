@@ -10,7 +10,7 @@
                 {{item.isPart?"-"+item.name:item.name}}
               </div>
               <div class="li-level">
-                <strong>等级：</strong><input v-model.number="item.level" @blur.prevent="check(index)" class="edit" maxlength="2" max="15">
+                <strong>等级：</strong><input v-model.number="item.level" @blur.prevent="check(index)" class="edit" maxlength="2" max="15" min="0" type="number">
               </div>
               <div class="li-look" @click="openLook(index)" :class="{'forbid': item.level}">查看</div>
             </li>
