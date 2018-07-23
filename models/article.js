@@ -20,7 +20,7 @@ module.exports = {
     if (list.type === 0 ) {
       return Article.find({}, {title: 1, cover: 1, type: 1, goto: 1, create_time: 1}).sort({create_time: -1, top: -1}).limit(list.limit).skip(list.skip)
     }
-    return Article.find({type: list.type}, {title: 1, cover: 1, type: 1, goto: 1, create_time: 1}).sort({create_time: -1, top: -1}).limit(list.limit).skip(list.skip)
+    return Article.find({type: list.type}, {title: 1, cover: 1, type: 1, goto: 1, create_time: 1}).sort({ top: -1, create_time: -1 }).limit(list.limit).skip(list.skip)
   },
 
   // 通过文章 id 获取一篇文章

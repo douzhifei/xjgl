@@ -2,7 +2,7 @@ var express = require('express')
 var config = require('./config/index')
 var axios = require('axios')
 var bodyParser = require('body-parser')
-const tokenQiniu = require('./config/qiniu').uploadToken()
+const tokenQiniu = require('./config/qiniu').uploadToken
 const jwt = require('jsonwebtoken')
 const morgan = require('morgan')
 const Article = require('./models/article')
@@ -202,7 +202,7 @@ apiRoutes.post("/createArticle",function(req, res){
  // 获取qiniu token
  app.get("/getToken",function(req, res){
     res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
-    res.end(tokenQiniu)
+    res.end(tokenQiniu())
  })
  // 统计页面访问次数
  app.get("/count",function(req, res){

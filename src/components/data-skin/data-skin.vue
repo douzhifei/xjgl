@@ -21,7 +21,7 @@
       </scroll>
       <skin-message class="message" :data="message" v-if="openMessage" @closeLook="closeLook"></skin-message>
       <skin-result class="result" :data="data" v-if="openResult" @closeResult="closeResult"></skin-result>
-      <div class="save" v-if="data.length!=0" @click="saveAndLook()">总计</div>
+      <div class="save" v-if="data.length!=0" @click="saveAndLook()">合计</div>
     </div>
   </transition>
 </template>

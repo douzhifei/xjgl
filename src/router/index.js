@@ -134,6 +134,12 @@ const DataSkin = resolve => {
   })
 }
 
+const DataHj = resolve => {
+  import('components/data-hj/data-hj').then(module => {
+    resolve(module)
+  })
+}
+
 export default new Router({
   // mode: 'history',
   routes: [
@@ -230,6 +236,11 @@ export default new Router({
       path: '/skin',
       component: DataSkin,
       meta: { title: '云裳计算器' }
+    },
+    {
+      path: '/hj',
+      component: DataHj,
+      meta: { title: '化境' }
     }
   ]
 })
