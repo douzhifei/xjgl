@@ -3,7 +3,7 @@
     <div class="data-lt">
       <head-box class="head-box" :data="articleData" :inApp="this.isApp(this.$route.query.inApp)"></head-box>
       <div class="compute">
-        <el-input-number v-model.number="level" :min="0" :max="100" label="描述文字"></el-input-number>
+        <el-input-number v-model.number="level" :min="0" :max="100" type="number" label="等级"></el-input-number>
       </div>
       <div class="result">升级所需法印：{{ animatedNumber1 }}</div>
       <div class="result">合计：{{ animatedNumber2 }}</div>

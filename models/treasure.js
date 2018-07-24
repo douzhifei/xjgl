@@ -52,6 +52,60 @@ module.exports = {
       case '风不止' :
         return Treasure.find({name: {$regex: /南蛮王|李三思|葛巧菱|灵月宫主/, $options: '$i'}}).sort({name: 1})
         break
+      case '仙一' :
+        return Treasure.find({plus: {$regex: str, $options: '$i'},important:2}).sort({map: 1})
+        break
+      case '仙二' :
+        return Treasure.find({plus: {$regex: str, $options: '$i'},important:2}).sort({map: 1})
+        break
+      case '仙三' :
+        return Treasure.find({plus: {$regex: str, $options: '$i'},important:2}).sort({map: 1})
+        break
+      case '仙四' :
+        return Treasure.find({plus: {$regex: str, $options: '$i'},important:2}).sort({map: 1})
+        break
+      case '仙五' :
+        return Treasure.find({plus:str,important:2}).sort({map: 1})
+        break
+      case '仙五前' :
+        return Treasure.find({plus:str,important:2}).sort({map: 1})
+        break
+      case '仙六' :
+        return Treasure.find({plus: {$regex: str, $options: '$i'},important:2}).sort({map: 1})
+        break
+      case '1星' :
+        return Treasure.find({level:1}).sort({map: 1})
+        break
+      case '2星' :
+        return Treasure.find({level:2}).sort({map: 1})
+        break
+      case '3星' :
+        return Treasure.find({level:3}).sort({map: 1})
+        break
+      case '4星' :
+        return Treasure.find({level:4}).sort({map: 1})
+        break
+      case '5星' :
+        return Treasure.find({level:5}).sort({map: 1})
+        break
+      case '6星' :
+        return Treasure.find({level:6}).sort({map: 1})
+        break
+      case '7星' :
+        return Treasure.find({level:7}).sort({map: 1})
+        break
+      case '8星' :
+        return Treasure.find({level:8}).sort({map: 1})
+        break
+      case '9星' :
+        return Treasure.find({level:9}).sort({map: 1})
+        break
+      case '10星' :
+        return Treasure.find({level:10}).sort({map: 1})
+        break
+      case '11星' :
+        return Treasure.find({level:11}).sort({map: 1})
+        break
       default:
         return Treasure.find({name: {$regex: str, $options: '$i'}}).sort({mapId: 1})
     }
