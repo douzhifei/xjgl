@@ -227,6 +227,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           res.end(JSON.stringify(data))
         })
        })
+       app.get("/setHot",function(req, res){
+        Hot.findAndUpdate(req.query.name).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       })
+       app.get("/createHot",function(req, res){
+        Hot.create(req.query).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       })
        // 获取qiniu token
        app.get("/getToken",function(req, res){
           res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})

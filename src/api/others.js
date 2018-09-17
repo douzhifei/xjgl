@@ -13,3 +13,24 @@ export function countList (data) {
     return Promise.resolve(res.data)
   })
 }
+
+export function getHots () {
+  const url = '/getHots'
+  return axios.get(url).then(res => {
+    return Promise.resolve(res.data)
+  })
+}
+
+export function setHot (str) {
+  const url = '/setHot?name=' + str
+  return axios.get(url).then(res => {
+    return Promise.resolve(res.data)
+  })
+}
+
+export function createHot (str) {
+  const url = '/createHot?name=' + str
+  return axios.get(url).then(res => {
+    return Promise.resolve(res.data)
+  })
+}

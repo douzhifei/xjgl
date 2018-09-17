@@ -19,6 +19,9 @@
           <div class="block" v-if="data.length!=0"></div>
         </div>
       </scroll>
+      <transition name="fade">
+        <div class="mask" v-if="openMessage"></div>
+      </transition>
       <skin-message class="message" :data="message" v-if="openMessage" @closeLook="closeLook"></skin-message>
       <skin-result class="result" :data="data" v-if="openResult" @closeResult="closeResult"></skin-result>
       <div class="save" v-if="data.length!=0" @click="saveAndLook()">合计</div>
@@ -194,4 +197,15 @@ export default {
   transition all 0.4s
 .slide-enter, .slide-leave-to
   transform translate3d(100%, 0, 0)
+.mask
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  width 100%
+  background-color rgba(0, 0, 0, 0.7)
+.fade-enter-active, .fade-leave-active
+  transition opacity 0.4s
+.fade-enter, .fade-leave-to
+  opacity 0
 </style>

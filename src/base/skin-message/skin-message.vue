@@ -273,13 +273,13 @@ export default {
         return
       }
       if (this.data.hasPart) {
-        return Math.floor(2500 * this.data.level)
+        return Math.floor(2000 * this.data.level)
       }
       if (this.data.isPart) {
         return this.data.level * 360
       }
       if (!this.data.hasPart && !this.data.isPart) {
-        return Math.floor(2000 * this.data.level)
+        return Math.floor(1600 * this.data.level)
       }
     },
     computeWCS () {
@@ -374,7 +374,6 @@ export default {
     height 100%
     top 0
     overflow hidden
-    background-color rgba(1, 1, 1, 0.7)
   .content
     position absolute
     width 72%

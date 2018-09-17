@@ -193,8 +193,21 @@ apiRoutes.post("/createArticle",function(req, res){
     res.end(JSON.stringify(data))
   })
  })
+ // hot
  app.get("/getHots",function(req, res){
   Hot.getList().then((data) => {
+    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+    res.end(JSON.stringify(data))
+  })
+ })
+ app.get("/setHot",function(req, res){
+  Hot.findAndUpdate(req.query.name).then((data) => {
+    res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+    res.end(JSON.stringify(data))
+  })
+ })
+ app.get("/createHot",function(req, res){
+  Hot.create(req.query).then((data) => {
     res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
     res.end(JSON.stringify(data))
   })

@@ -6,7 +6,7 @@
       <router-view></router-view>
     </keep-alive>
     <search-content class="search-content" v-if="showSearchContent" :data="searchHistory" :hots="hots" @selectKey="selectKey" @delSearch="delSearch" @historyClear="historyClear"></search-content>
-    <search-list v-if="showSearchList" :data="searchData" @select="slectItem"></search-list>
+    <search-list v-if="showSearchList" :data="searchData" @select="selectItem"></search-list>
   </div>
 </template>
 <script>
@@ -14,9 +14,9 @@ import Search from 'components/search/search'
 import Tab from 'components/tab/tab'
 import SearchContent from 'base/search-content/search-content'
 import SearchList from 'base/search-list/search-list'
-import { getArticleSearch, getHots } from 'api/article'
+import { getArticleSearch } from 'api/article'
 import { mapGetters, mapActions } from 'vuex'
-import { countVisit } from 'api/others'
+import { countVisit, getHots, setHot, createHot } from 'api/others'
 export default {
   data () {
     return {
@@ -70,8 +70,13 @@ export default {
         this.searchData = res
       })
     },
-    slectItem (item) {
+    selectItem (item) {
       this.saveSearch()
+      setHot(this.query).then(res => {
+        if (res === null) {
+          createHot(this.query)
+        }
+      })
       if (item.goto !== 'article') {
         this.$router.push({
           path: `/${item.goto}`,

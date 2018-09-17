@@ -74,13 +74,6 @@ export function getArticleSearch (str) {
     })
 }
 
-export function getHots () {
-  const url = '/getHots'
-  return axios.get(url).then(res => {
-    return Promise.resolve(res.data)
-  })
-}
-
 export function updateArticle (data) {
   const url = '/api/updateArticle'
   return axios.post(url, data).then(res => {
