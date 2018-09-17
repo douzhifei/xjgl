@@ -221,6 +221,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           res.end(JSON.stringify(data))
         })
        })
+       // hot
        app.get("/getHots",function(req, res){
         Hot.getList().then((data) => {
           res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
