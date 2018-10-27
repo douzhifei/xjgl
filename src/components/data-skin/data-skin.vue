@@ -65,12 +65,12 @@ export default {
   methods: {
     _getSkins () {
       let list = loadSkin()
-      if (list !== undefined) {
-        this.data = list
-      }
+      // if (list !== undefined) {
+      //   this.data = list
+      // }
       getSkins().then((res) => {
         if (list !== undefined) {
-          for (let i = 0; i < list.length; i++) {
+          for (let i = 0; i < res.length; i++) {
             res[i].level = list[i].level
           }
         }
