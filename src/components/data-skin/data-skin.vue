@@ -70,7 +70,7 @@ export default {
       // }
       getSkins().then((res) => {
         if (list !== undefined) {
-          for (let i = 0; i < list.length; i++) {
+          for (let i = 0; i < res.length; i++) {
             res[i].level = list[i].level
           }
         }
