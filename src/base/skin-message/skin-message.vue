@@ -234,7 +234,7 @@ export default {
         return Math.floor(2500 * this.data.level)
       }
       if (this.data.isPart) {
-        return this.data.level * 360
+        return this.data.level * 450 + (this.data.level>2 ? 600 : 0)
       }
       if (!this.data.hasPart && !this.data.isPart) {
         return Math.floor(2000 * this.data.level)
@@ -248,7 +248,7 @@ export default {
         return Math.floor(5000 / 3 * this.data.level)
       }
       if (this.data.isPart) {
-        return this.data.level * 360
+        return this.data.level * 300 + (this.data.level>5 ? 400 : 0)
       }
       if (!this.data.hasPart && !this.data.isPart) {
         return Math.floor(4000 / 3 * this.data.level)

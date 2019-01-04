@@ -263,7 +263,7 @@ export default {
         return Math.floor(2500 * item.level)
       }
       if (item.isPart) {
-        return item.level * 360
+        return item.level * 450 + (item.level>2 ? 600 : 0)
       }
       if (!item.hasPart && !item.isPart) {
         return Math.floor(2000 * item.level)
@@ -277,7 +277,7 @@ export default {
         return Math.floor(5000 / 3 * item.level)
       }
       if (item.isPart) {
-        return item.level * 360
+        return item.level * 300 + (item.level>5 ? 400 : 0)
       }
       if (!item.hasPart && !item.isPart) {
         return Math.floor(4000 / 3 * item.level)
