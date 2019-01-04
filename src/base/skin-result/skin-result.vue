@@ -97,7 +97,7 @@ export default {
         fjjs: 0,
         wcs: 0,
         zl: 0,
-        allwcs: 0, 
+        allwcs: 0,
         progress: 0
       }
     }
@@ -165,7 +165,7 @@ export default {
         return Math.floor(555.5 * item.level)
       }
       if (item.isPart) {
-        return item.level * 155 + (item.level >= 3 ? 167 : 0) + (item.level >= 10 ? 333 : 0) + (item.level >= 15 ? 499 : 0)
+        return item.level * 155 + (item.level >= 3 ? 500 / 3 : 0) + (item.level >= 10 ? 1000 / 3 : 0) + (item.level >= 15 ? 500 : 0)
       }
       if (!item.hasPart && !item.isPart) {
         return Math.floor(444.4 * item.level)
@@ -263,7 +263,7 @@ export default {
         return Math.floor(2500 * item.level)
       }
       if (item.isPart) {
-        return item.level * 450 + (item.level>2 ? 600 : 0)
+        return item.level * 450 + (item.level > 2 ? 600 : 0)
       }
       if (!item.hasPart && !item.isPart) {
         return Math.floor(2000 * item.level)
@@ -277,7 +277,7 @@ export default {
         return Math.floor(5000 / 3 * item.level)
       }
       if (item.isPart) {
-        return item.level * 300 + (item.level>5 ? 400 : 0)
+        return item.level * 300 + (item.level > 5 ? 400 : 0)
       }
       if (!item.hasPart && !item.isPart) {
         return Math.floor(4000 / 3 * item.level)
@@ -427,7 +427,7 @@ export default {
       }
       this.result.zl = (this.result.tl / 8 + this.result.gj) * (1.35 * 5 + 0.9) + this.result.ll / 2 * 5.9 + this.result.fy * 5.9
       this.result.zl = Math.floor(this.result.zl)
-      this.result.progress = (this.result.wcs/this.result.allwcs*100).toFixed(2)
+      this.result.progress = (this.result.wcs / this.result.allwcs * 100).toFixed(2)
     }
   }
 }

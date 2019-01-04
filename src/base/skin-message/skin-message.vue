@@ -136,7 +136,7 @@ export default {
         return Math.floor(555.5 * this.data.level)
       }
       if (this.data.isPart) {
-        return this.data.level * 155 + (this.data.level >= 3 ? 167 : 0) + (this.data.level >= 10 ? 333 : 0) + (this.data.level >= 15 ? 499 : 0)
+        return this.data.level * 155 + (this.data.level >= 3 ? 500 / 3 : 0) + (this.data.level >= 10 ? 1000 / 3 : 0) + (this.data.level >= 15 ? 500 : 0)
       }
       if (!this.data.hasPart && !this.data.isPart) {
         return Math.floor(444.4 * this.data.level)
@@ -234,7 +234,7 @@ export default {
         return Math.floor(2500 * this.data.level)
       }
       if (this.data.isPart) {
-        return this.data.level * 450 + (this.data.level>2 ? 600 : 0)
+        return this.data.level * 450 + (this.data.level > 2 ? 600 : 0)
       }
       if (!this.data.hasPart && !this.data.isPart) {
         return Math.floor(2000 * this.data.level)
@@ -248,7 +248,7 @@ export default {
         return Math.floor(5000 / 3 * this.data.level)
       }
       if (this.data.isPart) {
-        return this.data.level * 300 + (this.data.level>5 ? 400 : 0)
+        return this.data.level * 300 + (this.data.level > 5 ? 400 : 0)
       }
       if (!this.data.hasPart && !this.data.isPart) {
         return Math.floor(4000 / 3 * this.data.level)
@@ -408,21 +408,15 @@ export default {
       line-height 18px
       height 50px
       padding-bottom 5px
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.3);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+.bounce-enter-active
+  animation bounce-in 0.5s
+.bounce-leave-active
+  animation bounce-in 0.5s reverse
+@keyframes bounce-in
+  0%
+    transform scale(0)
+  50%
+    transform scale(1.3)
+  100%
+    transform scale(1)
 </style>
