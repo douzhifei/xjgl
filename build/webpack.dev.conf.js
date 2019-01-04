@@ -271,6 +271,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           res.end(JSON.stringify(data))
         })
        })
+       apiRoutes.put("/skin",function(req, res){
+        Skin.update(req.body).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       })
+       apiRoutes.delete("/skin",function(req, res){
+        Skin.del(req.query.id).then((data) => {
+          res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+          res.end(JSON.stringify(data))
+        })
+       })
        app.use('/api',apiRoutes)
     },
     hot: true,

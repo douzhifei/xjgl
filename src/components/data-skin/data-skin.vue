@@ -10,7 +10,7 @@
                 {{item.isPart?"-"+item.name:item.name}}
               </div>
               <div class="li-level">
-                <strong>等级：</strong><input v-model.number="item.level" @blur.prevent="check(index)" class="edit" maxlength="2" max="15" min="0" type="number">
+                <strong>等级：</strong><input v-model.number="item.level" @blur.prevent="check(index)" class="edit" maxlength="3" max="15" min="0" type="number">
               </div>
               <div class="li-look" @click="openLook(index)" :class="{'forbid': item.level}">查看</div>
             </li>
@@ -163,7 +163,7 @@ export default {
           justify-content space-between
           border-bottom 1px solid #E7E6EB
           .li-name
-            width 40%
+            width 35%
             display flex
             align-items center
             padding-left 13px
@@ -174,12 +174,12 @@ export default {
           .forbid
             color #409EFF
           .li-level
-            width 25%
+            width 30%
             display flex
             align-items center
             .edit
               padding 2px
-              max-width 30px
+              max-width 50px
               max-height 30px
               overflow hidden
               background-color #ebebeb

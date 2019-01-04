@@ -68,6 +68,10 @@
           <div class="item-left">提高战力：</div>
           <div class="item-right">{{result.zl}}</div>
         </div>
+        <div class="item item-zl">
+          <div class="item-left">进度：</div>
+          <div class="item-right">{{result.progress}}%</div>
+        </div>
       </div>
     </div>
   </transition>
@@ -92,7 +96,9 @@ export default {
         hjhx: 0,
         fjjs: 0,
         wcs: 0,
-        zl: 0
+        zl: 0,
+        allwcs: 0, 
+        progress: 0
       }
     }
   },
@@ -328,6 +334,29 @@ export default {
         return wcs
       }
     },
+    computeAllWCS (item) {
+      if (!item.isPart) {
+        let wcs = 0
+        for (let i = 1; i < 15 + 1; i++) {
+          if (i < 12) {
+            wcs += 50 * (i - 1)
+          } else {
+            wcs += 500
+          }
+        }
+        return wcs
+      } else {
+        let wcs = 0
+        for (let i = 1; i < 15 + 1; i++) {
+          if (i < 7) {
+            wcs += 20 * (i - 1)
+          } else {
+            wcs += 100
+          }
+        }
+        return wcs
+      }
+    },
     computeYS (item) {
       if (!item.isPart) {
         let ys = 0
@@ -394,9 +423,11 @@ export default {
         this.result.hjhx += this.computeHJHX(this.data[i])
         this.result.fjjs += this.computeFJJS(this.data[i])
         this.result.wcs += this.computeWCS(this.data[i])
+        this.result.allwcs += this.computeAllWCS(this.data[i])
       }
       this.result.zl = (this.result.tl / 8 + this.result.gj) * (1.35 * 5 + 0.9) + this.result.ll / 2 * 5.9 + this.result.fy * 5.9
       this.result.zl = Math.floor(this.result.zl)
+      this.result.progress = (this.result.wcs/this.result.allwcs*100).toFixed(2)
     }
   }
 }

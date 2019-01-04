@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import SkinAdd from 'base/skin-add/skin-add'
-import { getSkins, delSkin, createSkin, updateSkin } from 'api/skin'
+import ArticleAdd from 'base/skin-add/skin-add'
+import { createSkin } from 'api/skin'
 import Scroll from 'base/scroll/scroll'
 import { adminMixin } from 'common/js/mixin'
 export default {
@@ -37,7 +37,7 @@ export default {
       isAdd: true,
       titles: [{
         prop: 'name',
-        label: '衣服'
+        label: '标题'
       }, {
         prop: 'sort',
         label: '序'
@@ -67,16 +67,16 @@ export default {
     }
   },
   created () {
-    this._getSkinList()
+    this._getAllArticleList()
   },
   mounted () {
     this.checkToken()
   },
   methods: {
-    _getSkinList () {
+    _getAllArticleList () {
       let that = this
       let token = { token: this.token }
-      getSkins(token).then((res) => {
+      getAllArticleList(token).then((res) => {
         that.data = res
       })
     },
@@ -88,7 +88,7 @@ export default {
     submit (val) {
       if (this.isAdd) {
         val.token = this.token
-        createSkin(val).then((res) => {
+        createArticle(val).then((res) => {
           console.log(res)
           this.isOpenAdd = false
           this.$message('添加成功！')
@@ -97,7 +97,7 @@ export default {
       } else {
         console.log(val)
         val.token = this.token
-        updateSkin(val).then((res) => {
+        updateArticle(val).then((res) => {
           console.log(res)
           if (!res.ok) {
             this.$message('修改失败！')
@@ -113,7 +113,7 @@ export default {
     },
     delete (row) {
       let data = { id: row._id, token: this.token }
-      delSkin(data).then((res) => {
+      deleteArticle(data).then((res) => {
         if (!res.ok) {
           return
         }
@@ -127,7 +127,7 @@ export default {
       this.udata = row
     },
     width (key) {
-      if (key !== 'name') {
+      if (key !== 'title') {
         return 60
       }
     },
@@ -135,7 +135,7 @@ export default {
       this.selectedRow = val
     }
   },
-  components: { SkinAdd, Scroll }
+  components: { ArticleAdd, Scroll }
 }
 </script>
 
