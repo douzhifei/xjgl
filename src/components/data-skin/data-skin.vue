@@ -97,10 +97,9 @@ export default {
           let length = list.length > res.length ? res.length : list.length
           for (let i = 0; i < length; i++) {
             res[i].level = list[i].level
-            if(typeof(list[i].dianhua) !== "unfefined" && !list[i].dianhua){
+            if(typeof(list[i].dianhua) !== "undefined" && !list[i].dianhua){
                res[i].dianhua = list[i].dianhua
             }
-            console.log(res[i])
             // res[i].battle = list[i].battle
           }
         }
