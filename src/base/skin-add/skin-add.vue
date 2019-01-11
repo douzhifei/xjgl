@@ -1,10 +1,16 @@
 <template>
   <div class="count">
-    <div class="head">皮肤添加</div>
+    <div class="head">
+        <div class="head-left" @click="quit">关闭</div>
+        <div class="head-center">皮肤添加</div>
+      </div>
     <div class="content">
       <el-form ref="form" :model="form" label-width="80px" size="mini">
-        <el-form-item label="名称">
+        <el-form-item label="名称"> 
           <el-input v-model="form.name"></el-input>
+        </el-form-item>
+        <el-form-item label="人物"> 
+          <el-input v-model="form.figure"></el-input>
         </el-form-item>
         <el-form-item label="排序">
           <el-input v-model.number="form.sort"></el-input>
@@ -87,6 +93,16 @@ export default {
       }
     }
   },
+  props: {
+    udata: {
+      type: Object,
+      default: () => { return {} }
+    }
+  },
+  created () {
+    this.form = this.udata
+    console.log(this.form)
+  },
   mounted () {
     this.checkToken()
   },
@@ -94,11 +110,15 @@ export default {
     onSubmit () {
       this.form.token = this.token
       console.log(this.form)
-      createSkin(this.form).then((res) => {
-        console.log(res)
-        this.$message('添加成功！')
-        this.form = {}
-      })
+      this.$emit('submit',this.form)
+      // createSkin(this.form).then((res) => {
+      //   console.log(res)
+      //   this.$message('添加成功！')
+      //   this.form = {}
+      // })
+    },
+     quit () {
+      this.$emit('quit')
     }
   }
 }
@@ -114,13 +134,37 @@ export default {
   background-color $color-background
   z-index 999
   .head
-    width 100%
-    height 50px
     display flex
+    width 100%
+    height 45px
     align-items center
     justify-content center
-    font-size $font-size-medium-x
+    font-size 16px
+    top 0
     border-bottom 2px solid #E7E6EB
+    .head-center
+      width 285px
+      height 45px
+      position absolute
+      left 45px
+      line-height 45px
+      text-align center
+    .head-left
+      position absolute
+      width 45px
+      height 45px
+      display flex
+      align-items center
+      justify-content center
+      left 0
+    .head-right
+      position absolute
+      width 45px
+      height 45px
+      right 0
+      display flex
+      align-items center
+      justify-content center
   .content
     width 92%
     margin-left 3%

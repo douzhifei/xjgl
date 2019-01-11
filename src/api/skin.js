@@ -14,9 +14,14 @@ export function updateSkin (data) {
   })
 }
 
-export function delSkin (id) {
-  const url = '/api/skin/' + id
-  return axios.delete(url).then(res => {
+export function updateSkinMore (data) {
+  const url = '/api/skinMore'
+  axios.post(url, data)
+}
+
+export function delSkin (data) {
+  const url = '/api/skin'
+  return axios.delete(url, {params: data}).then(res => {
     return Promise.resolve(res.data)
   })
 }

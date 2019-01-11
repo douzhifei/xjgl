@@ -122,7 +122,7 @@ export default {
         return Math.floor(555.5 * this.data.level)
       }
       if (this.data.isPart) {
-        return this.data.level * 155 + (this.data.level >= 3 ? 500/3 : 0) + (this.data.level >= 10 ? 1000/3 : 0) + (this.data.level >= 15 ? 500 : 0)
+        return this.data.level * 155 + (this.data.level >= 3 ? 500 / 3 : 0) + (this.data.level >= 10 ? 1000 / 3 : 0) + (this.data.level >= 15 ? 500 : 0)
       }
       if (!this.data.hasPart && !this.data.isPart) {
         return Math.floor(444.4 * this.data.level)

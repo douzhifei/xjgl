@@ -7,11 +7,14 @@
           <el-col :span="8" style="margin:0 10px">
             <el-input placeholder="搜索" v-model="filters[0].value"></el-input>
           </el-col>
-
+          
           <el-col :span="5" style="margin: 0 15px">
             <el-button @click="openAdd">添加</el-button>
           </el-col>
 
+           <el-col :span="5" style="margin: 0 15px">
+            <el-button @click="updateMore">updateMore</el-button>
+          </el-col>
         </el-row>
       </div>
       <data-tables class="data-table" :data="data" :current-page="3" :page-size="5" :pagination-props="{ background: false, small: true, layout: 'prev, pager, next', pageSizes: [6, 1, 3] }" :action-col="actionCol" :filters="filters" @selection-change="handleSelectionChange" style="width: 100%">
@@ -25,7 +28,7 @@
 
 <script>
 import SkinAdd from 'base/skin-add/skin-add'
-import { getSkins, delSkin, createSkin, updateSkin } from 'api/skin'
+import { getSkins, delSkin, createSkin, updateSkin, updateSkinMore } from 'api/skin'
 import Scroll from 'base/scroll/scroll'
 import { adminMixin } from 'common/js/mixin'
 export default {
@@ -41,6 +44,9 @@ export default {
       }, {
         prop: 'sort',
         label: '序'
+      },{
+        prop: 'property',
+        label: '属'
       }],
       isOpenAdd: false,
       filters: [{ // 查询
@@ -73,6 +79,12 @@ export default {
     this.checkToken()
   },
   methods: {
+    updateMore() {
+      let that = this
+      let dianhua = [{ level: 0, sort: 0 }, { level: 0, sort: 0 }]
+      let um = { token:this.token ,dianhua:dianhua }
+      updateSkinMore(um)
+    },
     _getSkinList () {
       let that = this
       let token = { token: this.token }
@@ -88,6 +100,7 @@ export default {
     submit (val) {
       if (this.isAdd) {
         val.token = this.token
+        val.dianhua = [{ 'sort': 0, 'level': 0 }, { 'sort': 0, 'level': 0 }]
         createSkin(val).then((res) => {
           console.log(res)
           this.isOpenAdd = false
@@ -114,6 +127,7 @@ export default {
     delete (row) {
       let data = { id: row._id, token: this.token }
       delSkin(data).then((res) => {
+        console.log(res)
         if (!res.ok) {
           return
         }

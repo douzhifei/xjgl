@@ -61,16 +61,24 @@
           <div class="item-right">{{result.fjjs}}</div>
         </div>
         <div class="item">
-          <div class="item-left">五彩石：</div>
+          <div class="item-left">进阶石头：</div>
           <div class="item-right">{{result.wcs}}</div>
-        </div>
-        <div class="item item-zl">
-          <div class="item-left">提高战力：</div>
-          <div class="item-right">{{result.zl}}</div>
         </div>
         <div class="item item-zl">
           <div class="item-left">进度：</div>
           <div class="item-right">{{result.progress}}%</div>
+        </div>
+        <div class="item">
+          <div class="item-left">累计石头：</div>
+          <div class="item-right">{{result.wcs + result.longyu}}</div>
+        </div>
+        <div class="item">
+          <div class="item-left">龙玉：</div>
+          <div class="item-right">{{result.longyu}}</div>
+        </div>
+        <div class="item item-zl">
+          <div class="item-left">提高战力：</div>
+          <div class="item-right">{{result.zl}}</div>
         </div>
       </div>
     </div>
@@ -98,7 +106,8 @@ export default {
         wcs: 0,
         zl: 0,
         allwcs: 0,
-        progress: 0
+        progress: 0,
+        longyu: 0
       }
     }
   },
@@ -151,7 +160,7 @@ export default {
         return Math.floor(555.5 * item.level)
       }
       if (item.isPart) {
-        return item.level * 155 + (item.level >= 3 ? 500/3 : 0) + (item.level >= 10 ? 1000/3 : 0) + (item.level >= 15 ? 500 : 0)
+        return item.level * 155 + (item.level >= 3 ? 500 / 3 : 0) + (item.level >= 10 ? 1000 / 3 : 0) + (item.level >= 15 ? 500 : 0)
       }
       if (!item.hasPart && !item.isPart) {
         return Math.floor(444.4 * item.level)
@@ -357,6 +366,61 @@ export default {
         return wcs
       }
     },
+    computeLongyu (item) {
+      if (item.isPart) {
+        return 0
+      }
+      let wcs = 0
+      let level1 = item.dianhua[0].level
+      let level2 = item.dianhua[1].level
+      for (let i = 1; i < level1 + 1; i++) {
+        if (i < 4) {
+          wcs += 50
+        } else if (i < 7) {
+          wcs += 75
+        } else if (i < 10) {
+          wcs += 100
+        } else if (i < 13) {
+          wcs += 150
+        } else if (i < 16) {
+          wcs += 200
+        } else if (i < 19) {
+          wcs += 300
+        } else if (i < 22) {
+          wcs += 400
+        } else if (i < 25) {
+          wcs += 500
+        } else if (i < 28) {
+          wcs += 600
+        } else if (i < 31) {
+          wcs += 800
+        }
+      }
+      for (let i = 1; i < level2 + 1; i++) {
+        if (i < 4) {
+          wcs += 50
+        } else if (i < 7) {
+          wcs += 75
+        } else if (i < 10) {
+          wcs += 100
+        } else if (i < 13) {
+          wcs += 150
+        } else if (i < 16) {
+          wcs += 200
+        } else if (i < 19) {
+          wcs += 300
+        } else if (i < 22) {
+          wcs += 400
+        } else if (i < 25) {
+          wcs += 500
+        } else if (i < 28) {
+          wcs += 600
+        } else if (i < 31) {
+          wcs += 800
+        }
+      }
+      return wcs
+    },
     computeYS (item) {
       if (!item.isPart) {
         let ys = 0
@@ -403,6 +467,126 @@ export default {
         return bj
       }
     },
+    computeTili1 (item) {
+      if (!item.tl) {
+        return 0
+      }
+      if (!item.battle) {
+        return 0
+      }
+      let level = item.dianhua[0].level > 30 ? 30 : item.dianhua[0].level
+      if (item.hasPart) {
+        return 2500 * Math.ceil(level / 2) * 3
+      }
+      if (!item.hasPart && !item.isPart) {
+        return 2000 * Math.ceil(level / 2) * 3
+      }
+    },
+    computeGongji1 (item) {
+      if (!item.gj) {
+        return 0
+      }
+      if (!item.battle) {
+        return 0
+      }
+      let level = item.dianhua[0].level > 30 ? 30 : item.dianhua[0].level
+      if (item.hasPart) {
+        return Math.floor(2500 * Math.ceil(level / 2))
+      }
+      if (!item.hasPart && !item.isPart) {
+        return Math.floor(2000 * Math.ceil(level / 2))
+      }
+    },
+    computeLingli1 (item) {
+      if (!item.ll) {
+        return 0
+      }
+      if (!item.battle) {
+        return 0
+      }
+      let level = item.dianhua[0].level > 30 ? 30 : item.dianhua[0].level
+      if (item.hasPart) {
+        return Math.floor(555.5 * Math.ceil(level / 2) * 3)
+      }
+      if (!item.hasPart && !item.isPart) {
+        return Math.floor(444.4 * Math.ceil(level / 2) * 3)
+      }
+    },
+    computeFangyu1 (item) {
+      if (!item.fy) {
+        return 0
+      }
+      if (!item.battle) {
+        return 0
+      }
+      let level = item.dianhua[0].level > 30 ? 30 : item.dianhua[0].level
+      if (item.hasPart) {
+        return Math.floor(555.5 * Math.ceil(level / 2) * 3)
+      }
+      if (!item.hasPart && !item.isPart) {
+        return Math.floor(444.4 * Math.ceil(level / 2) * 3)
+      }
+    },
+    computeTili2 (item) {
+      if (!item.tl) {
+        return 0
+      }
+      if (!item.battle) {
+        return 0
+      }
+      let level = item.dianhua[1].level > 30 ? 30 : item.dianhua[1].level
+      if (item.hasPart) {
+        return 2500 * Math.ceil(level / 2) * 3
+      }
+      if (!item.hasPart && !item.isPart) {
+        return 2000 * Math.ceil(level / 2) * 3
+      }
+    },
+    computeGongji2 (item) {
+      if (!item.gj) {
+        return 0
+      }
+      if (!item.battle) {
+        return 0
+      }
+      let level = item.dianhua[1].level > 30 ? 30 : item.dianhua[1].level
+      if (item.hasPart) {
+        return Math.floor(2500 * Math.ceil(level / 2))
+      }
+      if (!item.hasPart && !item.isPart) {
+        return Math.floor(2000 * Math.ceil(level / 2))
+      }
+    },
+    computeLingli2 (item) {
+      if (!item.ll) {
+        return 0
+      }
+      if (!item.battle) {
+        return 0
+      }
+      let level = item.dianhua[1].level > 30 ? 30 : item.dianhua[1].level
+      if (item.hasPart) {
+        return Math.floor(555.5 * Math.ceil(level / 2) * 3)
+      }
+      if (!item.hasPart && !item.isPart) {
+        return Math.floor(444.4 * Math.ceil(level / 2) * 3)
+      }
+    },
+    computeFangyu2 (item) {
+      if (!item.fy) {
+        return 0
+      }
+      if (!item.battle) {
+        return 0
+      }
+      let level = item.dianhua[1].level > 30 ? 30 : item.dianhua[1].level
+      if (item.hasPart) {
+        return Math.floor(555.5 * Math.ceil(level / 2) * 3)
+      }
+      if (!item.hasPart && !item.isPart) {
+        return Math.floor(444.4 * Math.ceil(level / 2) * 3)
+      }
+    },
     quit () {
       this.$emit('closeResult')
     },
@@ -424,6 +608,7 @@ export default {
         this.result.fjjs += this.computeFJJS(this.data[i])
         this.result.wcs += this.computeWCS(this.data[i])
         this.result.allwcs += this.computeAllWCS(this.data[i])
+        this.result.longyu += this.computeLongyu(this.data[i])
       }
       this.result.zl = (this.result.tl / 8 + this.result.gj) * (1.35 * 5 + 0.9) + this.result.ll / 2 * 5.9 + this.result.fy * 5.9
       this.result.zl = Math.floor(this.result.zl)

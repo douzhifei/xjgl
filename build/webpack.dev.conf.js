@@ -277,6 +277,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           res.end(JSON.stringify(data))
         })
        })
+       apiRoutes.post("/skinMore",function(req, res){
+        Skin.updateMore(req.body)
+       })
        apiRoutes.delete("/skin",function(req, res){
         Skin.del(req.query.id).then((data) => {
           res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
