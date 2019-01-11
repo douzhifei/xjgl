@@ -100,6 +100,7 @@ export default {
             if(typeof(list[i].dianhua) !== "unfefined" && !list[i].dianhua){
                res[i].dianhua = list[i].dianhua
             }
+            console.log(res[i])
             // res[i].battle = list[i].battle
           }
         }
