@@ -36,6 +36,7 @@
           <div class="block" v-if="data.length!=0"></div>
         </div>
       </scroll>
+      <div class="save" v-if="data.length!=0" @click="saveAndLook()">合计</div>
       <transition name="fade">
         <div class="mask" v-if="openMessage"></div>
       </transition>
@@ -45,7 +46,6 @@
       <skin-message class="message" :data="message" v-if="openMessage" @closeLook="closeLook"></skin-message>
       <skin-dianhua class="message" :data="message" :list="dhlist" v-if="openDianhua" @closeDianhua="closeDianhua" @saveDianhua="saveDianhua"></skin-dianhua>
       <skin-result class="result" :data="data" v-if="openResult" @closeResult="closeResult"></skin-result>
-      <div class="save" v-if="data.length!=0" @click="saveAndLook()">合计</div>
     </div>
   </transition>
 </template>
@@ -97,8 +97,10 @@ export default {
           let length = list.length > res.length ? res.length : list.length
           for (let i = 0; i < length; i++) {
             res[i].level = list[i].level
-            if(typeof(list[i].dianhua) !== "undefined" && !list[i].dianhua){
-               res[i].dianhua = list[i].dianhua
+            if(typeof(list[i].dianhua) !== "undefined"){
+              if(list[i].dianhua.length!=0){
+                res[i].dianhua = list[i].dianhua
+              }
             }
             // res[i].battle = list[i].battle
           }
