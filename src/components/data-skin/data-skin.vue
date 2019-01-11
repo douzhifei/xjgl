@@ -97,8 +97,10 @@ export default {
           let length = list.length > res.length ? res.length : list.length
           for (let i = 0; i < length; i++) {
             res[i].level = list[i].level
-            res[i].dianhua = list[i].dianhua
-            res[i].battle = list[i].battle
+            if(list[i].dianhua.length!=0){
+               res[i].dianhua = list[i].dianhua
+            }
+            // res[i].battle = list[i].battle
           }
         }
         this.data = res
