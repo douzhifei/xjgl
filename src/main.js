@@ -15,6 +15,9 @@ import { DataTables } from 'vue-data-tables'
 import VueHtml5Editor from 'vue-html5-editor'
 import 'common/css/font-awesome.min.css'
 import axios from 'axios'
+// import Vconsole from 'vconsole'
+// const vConsole = new Vconsole()
+// export default vConsole
 Vue.use(ElementUI)
 Vue.use(DataTables)
 Vue.use(VueLazyload, {

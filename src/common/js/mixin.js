@@ -64,6 +64,27 @@ export const articleMixin = {
         query: { inApp: 1 }
       })
     },
+    blurAdjust () {
+      setTimeout(() => {
+        if (
+          document.activeElement.tagName == 'INPUT' ||
+          document.activeElement.tagName == 'TEXTAREA'
+        ) {
+          return
+        }
+        let result = 'pc'
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+          // 判断iPhone|iPad|iPod|iOS
+          result = 'ios'
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+          // 判断Android
+          result = 'android'
+        }
+        if (result === 'ios') {
+          document.activeElement.scrollIntoViewIfNeeded(true)
+        }
+      }, 100)
+    },
     ...mapActions(['saveFavoriteList', 'deleteFavoriteList'])
   }
 }

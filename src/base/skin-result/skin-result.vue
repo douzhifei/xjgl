@@ -160,7 +160,7 @@ export default {
         return Math.floor(555.5 * item.level)
       }
       if (item.isPart) {
-        return item.level * 155 + (item.level >= 3 ? 500 / 3 : 0) + (item.level >= 10 ? 1000 / 3 : 0) + (item.level >= 15 ? 500 : 0)
+        return Math.floor(item.level * 155 + (item.level >= 3 ? 500 / 3 : 0) + (item.level >= 10 ? 1000 / 3 : 0) + (item.level >= 15 ? 500 : 0))
       }
       if (!item.hasPart && !item.isPart) {
         return Math.floor(444.4 * item.level)
@@ -174,7 +174,7 @@ export default {
         return Math.floor(555.5 * item.level)
       }
       if (item.isPart) {
-        return item.level * 155 + (item.level >= 3 ? 500 / 3 : 0) + (item.level >= 10 ? 1000 / 3 : 0) + (item.level >= 15 ? 500 : 0)
+        return Math.floor(item.level * 155 + (item.level >= 3 ? 500 / 3 : 0) + (item.level >= 10 ? 1000 / 3 : 0) + (item.level >= 15 ? 500 : 0))
       }
       if (!item.hasPart && !item.isPart) {
         return Math.floor(444.4 * item.level)

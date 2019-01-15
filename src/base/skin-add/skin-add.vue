@@ -1,15 +1,15 @@
 <template>
   <div class="count">
     <div class="head">
-        <div class="head-left" @click="quit">关闭</div>
-        <div class="head-center">皮肤添加</div>
-      </div>
+      <div class="head-left" @click="quit">关闭</div>
+      <div class="head-center">皮肤添加</div>
+    </div>
     <div class="content">
       <el-form ref="form" :model="form" label-width="80px" size="mini">
-        <el-form-item label="名称"> 
+        <el-form-item label="名称">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="人物"> 
+        <el-form-item label="人物">
           <el-input v-model="form.figure"></el-input>
         </el-form-item>
         <el-form-item label="排序">
@@ -74,7 +74,7 @@
           <el-radio-button :label="4">土</el-radio-button>
           <el-radio-button :label="5">武</el-radio-button>
         </el-radio-group>
-        <el-form-item >
+        <el-form-item>
           <el-button type="primary" class="sumbmit" @click="onSubmit">立即创建</el-button>
         </el-form-item>
       </el-form>
@@ -110,14 +110,14 @@ export default {
     onSubmit () {
       this.form.token = this.token
       console.log(this.form)
-      this.$emit('submit',this.form)
+      this.$emit('submit', this.form)
       // createSkin(this.form).then((res) => {
       //   console.log(res)
       //   this.$message('添加成功！')
       //   this.form = {}
       // })
     },
-     quit () {
+    quit () {
       this.$emit('quit')
     }
   }

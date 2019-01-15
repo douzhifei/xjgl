@@ -337,7 +337,7 @@ export default {
     computeBJ () {
       if (this.data.isPart) {
         let bj = 0
-        for (let i = 1; i < this.data.level + 1; i++) {
+        for (let i = 2; i < this.data.level + 1; i++) {
           if (i < 4) {
             bj += 1
           } else if (i === 4) {

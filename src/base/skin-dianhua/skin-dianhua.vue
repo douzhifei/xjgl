@@ -9,6 +9,7 @@
             </el-option>
           </el-select>
           <strong style="margin-left:10px">等级：</strong><input v-if="dh1.sort" v-model.number="data.dianhua[0].level" @blur.prevent="check(0)" class="edit" maxlength="3" max="30" min="1" type="number">
+          <strong @click="clearDianhua(0)" v-if="dh1.sort">重置</strong>
           <div class="jineng">{{dh1.jn}}</div>
           <div class="data" v-if="data.dianhua[0].level">
             <div class="item" v-if="dh1.tl">
@@ -54,7 +55,8 @@
             <el-option v-for="item in options" :key="item.value" :label="item.name" :value="item">
             </el-option>
           </el-select>
-          <strong style="margin-left:10px">等级：</strong><input v-if="dh1.sort" v-model.number="data.dianhua[1].level" @blur.prevent="check(1)" class="edit" maxlength="3" max="30" min="1" type="number">
+          <strong style="margin-left:10px">等级：</strong><input v-if="dh2.sort" v-model.number="data.dianhua[1].level" @blur.prevent="check(1)" class="edit" maxlength="3" max="30" min="1" type="number">
+          <strong @click="clearDianhua(1)" v-if="dh2.sort">重置</strong>
           <div class="jineng">{{dh2.jn}}</div>
           <div class="data" v-if="data.dianhua[1].level">
             <div class="item" v-if="dh2.tl">
@@ -101,7 +103,9 @@
 </template>
 
 <script>
+import { articleMixin } from 'common/js/mixin'
 export default {
+  mixins: [articleMixin],
   props: {
     data: {
       type: Object,
@@ -181,7 +185,7 @@ export default {
     computeWCS1 () {
       let wcs = 0
       let level = this.data.dianhua[0].level
-      if (level == 0) {
+      if (level === 0) {
         return 0
       }
       for (let i = 1; i < level + 1; i++) {
@@ -212,7 +216,7 @@ export default {
     computeYS1 () {
       let ys = 0
       let level = this.data.dianhua[0].level > 30 ? 30 : this.data.dianhua[0].level
-      if (level == 0) {
+      if (level === 0) {
         return 0
       }
       for (let i = 1; i < level + 1; i++) {
@@ -223,7 +227,7 @@ export default {
     computeBJ1 () {
       let bj = 0
       let level = this.data.dianhua[0].level > 30 ? 30 : this.data.dianhua[0].level
-      if (level == 0) {
+      if (level === 0) {
         return 0
       }
       for (let i = 1; i < level + 1; i++) {
@@ -282,7 +286,7 @@ export default {
     computeWCS2 () {
       let wcs = 0
       let level = this.data.dianhua[1].level
-      if (level == 0) {
+      if (level === 0) {
         return 0
       }
       for (let i = 1; i < level + 1; i++) {
@@ -313,7 +317,7 @@ export default {
     computeYS2 () {
       let ys = 0
       let level = this.data.dianhua[1].level > 30 ? 30 : this.data.dianhua[1].level
-      if (level == 0) {
+      if (level === 0) {
         return 0
       }
       for (let i = 1; i < level + 1; i++) {
@@ -324,7 +328,7 @@ export default {
     computeBJ2 () {
       let bj = 0
       let level = this.data.dianhua[1].level > 30 ? 30 : this.data.dianhua[1].level
-      if (level == 0) {
+      if (level === 0) {
         return 0
       }
       for (let i = 1; i < level + 1; i++) {
@@ -355,15 +359,21 @@ export default {
     changeSkin (index) {
       this.data.dianhua[0].sort = this.dh1.sort
       this.data.dianhua[1].sort = this.dh2.sort
-      if (index == 0) {
+      if (index === 0) {
         this.data.dianhua[0].level = 1
       }
-      if (index == 1) {
+      if (index === 1) {
         this.data.dianhua[1].level = 1
       }
       this.$emit('saveDianhua', this.data)
     },
+    clearDianhua (index) {
+      this.data.dianhua[index].level = 0
+      this.data.dianhua[index].sort = ''
+      this.quit()
+    },
     check (index) {
+      this.blurAdjust()
       if (index === 0) {
         if (!Number.isFinite(this.data.dianhua[0].level)) {
           this.data.dianhua[0].level = 1
@@ -395,7 +405,7 @@ export default {
         }
       }
       this.$emit('saveDianhua', this.data)
-    },
+    }
   }
 }
 </script>
@@ -427,10 +437,10 @@ export default {
       width 100%
       padding-bottom 20px
       .select
-        width 50%
+        width 46%
       .edit
         padding 2px
-        min-width 60px
+        min-width 50px
         min-height 30px
         overflow hidden
       .jineng

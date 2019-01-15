@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="data-skin">
+    <div class="data-skin" ref="skin">
       <scroll class="content" ref="scroll">
         <div class="content-div">
           <head-box class="head-box" :data="articleData" :inApp="this.isApp(this.$route.query.inApp)"></head-box>
@@ -20,12 +20,7 @@
                 <strong>等级：</strong><input v-model.number="item.level" @blur.prevent="check(index)" class="edit" maxlength="3" max="15" min="0" type="number">
               </div>
               <div class="li-operate">
-                <el-switch class="li-battle"
-                  v-if="false"
-                  v-model="item.battle"
-                  @change="battle"
-                  :width="30"
-                  >
+                <el-switch class="li-battle" v-if="false" v-model="item.battle" @change="battle" :width="30">
                 </el-switch>
                 <div class="li-look" @click="dianhua(index)" :class="{'forbid': item.level}" v-show="!item.isPart">点化</div>
                 <div class="li-look" @click="openLook(index)" :class="{'forbid': item.level}">查看</div>
@@ -97,8 +92,8 @@ export default {
           let length = list.length > res.length ? res.length : list.length
           for (let i = 0; i < length; i++) {
             res[i].level = list[i].level
-            if(typeof(list[i].dianhua) !== "undefined"){
-              if(list[i].dianhua.length!=0){
+            if (typeof (list[i].dianhua) !== "undefined") {
+              if (list[i].dianhua.length != 0) {
                 res[i].dianhua = list[i].dianhua
               }
             }
@@ -108,6 +103,7 @@ export default {
         this.data = res
         setTimeout(() => {
           this.$refs.scroll.refresh()
+          //console.log(this.$refs.skin.offsetHeight)
         }, 300)
       })
     },
@@ -115,6 +111,7 @@ export default {
       this.$refs.scroll.scrollTo(0, 0, 300)
     },
     check (index) {
+      this.blurAdjust()
       if (!Number.isFinite(this.data[index].level)) {
         this.data[index].level = 0
         this.data[index].dianhua = [{ level: 0, sort: 0 }, { level: 0, sort: 0 }]
@@ -134,12 +131,12 @@ export default {
     battle () {
       saveSkin(this.data)
     },
-    saveDianhua(data) {
-       for(let i =0 ;i<this.data.length;i++) {
-         if(data.sort === this.data[i].sort) {
-           this.data[i] = data
-         }
-       }
+    saveDianhua (data) {
+      for (let i = 0; i < this.data.length; i++) {
+        if (data.sort === this.data[i].sort) {
+          this.data[i] = data
+        }
+      }
       //  for(let i=0;i<this.data.length;i++) {
       //    let time = 0
       //    for(let j=0;j<this.data.length;j++) {
@@ -147,15 +144,15 @@ export default {
       //      if(this.data[j].dianhua.length!=0){
       //       if(this.data[j].dianhua[0].sort == this.data[i].sort) {
       //         time++
-      //       } 
+      //       }
       //       if(this.data[j].dianhua[1].sort == this.data[i].sort) {
       //         time++
       //       }
-      //      } 
+      //      }
       //    }
       //    this.data[i].dhtime = time
       //  }
-       saveSkin(this.data)
+      saveSkin(this.data)
     },
     openLook (index) {
       if (!this.data[index].level) {
@@ -173,7 +170,7 @@ export default {
       for (let i = 0; i < this.data.length; i++) {
         if (!this.data[i].isPart) {
           if (this.data[i].property !== this.message.property) {
-            if(this.data[i].level > 0 ) {
+            if (this.data[i].level > 0) {
               let item = {}
               item.sort = this.data[i].sort
               item.name = this.data[i].name
@@ -193,7 +190,7 @@ export default {
         }
       }
       this.dhlist = list
-      if(this.dhlist.length === 0) {
+      if (this.dhlist.length === 0) {
         return
       }
       this.openDianhua = true
@@ -221,7 +218,7 @@ export default {
 <style lang="stylus" scoped>
 @import '~common/stylus/variable'
 .data-skin
-  position fixed
+  position absolute
   width 100%
   left 0
   top 0
@@ -229,8 +226,6 @@ export default {
   overflow scroll
   z-index 1000
   background $color-background
-  .adv
-    margin-top 40px
   .block
     width 100%
     height 45px
